@@ -1,0 +1,21 @@
+package model;
+public class EventPrice
+{
+    private String eur;
+
+    public String getEur ()
+    {
+        return eur;
+    }
+
+    public void setEur (String eur)
+    {
+        this.eur = eur;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [eur = "+eur+"]";
+    }
+}
