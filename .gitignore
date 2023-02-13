@@ -3,4 +3,4 @@ bin
 .env
 .class
 .metadata
-/target/
+target
