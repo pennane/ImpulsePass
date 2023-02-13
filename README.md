@@ -1,5 +1,9 @@
 ## Kideappdataanalyysivehje
 
+### Käynnistäminen
+
+view.StartProject::main
+
 ### Env filu
 
 Luo suoraan `src` kansioon `.env` tiedosto
