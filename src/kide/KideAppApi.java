@@ -22,6 +22,9 @@ public class KideAppApi {
 		gson = new Gson();
 	}
 
+	/**
+	* Internal wrapper for requesting anything from the api 
+	*/
 	private <T> Optional<T> request(Type returnType, String endpoint, String params) {
 
 		URL url = null;
