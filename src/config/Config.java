@@ -3,7 +3,11 @@ package config;
 import io.github.cdimascio.dotenv.Dotenv;
 
 /*
- *  Singleton pointing to dotenv for fetching env variables
+ *  Dotenv wrapper for env variables.
+ *  Create a file named .env directly under the src folder.
+ *
+ *	In the file variables are stored one per line and in the following syntax
+ *  SOME_KEY=some value 
  */
 public class Config {
 	private static Dotenv env = Dotenv.configure().load();
