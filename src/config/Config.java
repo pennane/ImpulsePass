@@ -15,4 +15,8 @@ public class Config {
 	public static String get(String key) {
 		return env.get(key);
 	}
+
+	public static String get(String key, String defaultValue) {
+		return env.get(key, defaultValue);
+	}
 }
