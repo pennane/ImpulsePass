@@ -1,5 +1,7 @@
 ## Kideappdataanalyysivehje
 
+![status](http://10.114.32.28:8080/job/kideappdataanalyysivehje/badge/icon)
+
 ### Käynnistäminen
 
 view.StartProject::main
