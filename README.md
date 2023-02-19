@@ -1,6 +1,6 @@
 ## Kideappdataanalyysivehje
 
-![status](http://10.114.32.28:8080/job/kideappdataanalyysivehje/badge/icon)
+[status](http://10.114.32.28:8080/job/kideappdataanalyysivehje/badge/icon)
 
 ### Käynnistäminen
 
