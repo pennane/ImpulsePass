@@ -1,20 +1,31 @@
 package model;
 
-import controller.IAppControllerVToM;
-import kide.KideAppApi;
+import java.util.List;
+import java.util.Optional;
 
-public class Motor implements IMotor {
+import controller.IAppControllerVToM;
+import database.Mongo;
+import kide.KideAppApi;
+import kide.KideAppEvent;
+
+public class Motor extends Thread implements IMotor {
 	IAppControllerVToM controller;
 	KideAppApi api;
 
 	public Motor(IAppControllerVToM controller) {
 		this.controller = controller;
 		api = new KideAppApi();
+
 	}
 
 	@Override
 	public void handleEventsRequest() {
-		controller.receiveEvents(api.fetchEvents());
-	}
+		Optional<List<KideAppEvent>> events = api.fetchEvents();
+		controller.receiveEvents(events);
 
+		if (events.isPresent()) {
+			Mongo.INSTANCE.insertEvents(events.get());
+		}
+
+	}
 }

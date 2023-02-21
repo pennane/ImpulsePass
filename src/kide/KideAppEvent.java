@@ -10,51 +10,51 @@ import model.EventPrice;
 public class KideAppEvent {
 	private String dateSalesFrom;
 
-	private String isActual;
+	private Boolean isActual;
 
 	private String companyName;
 
-	private String availability;
+	private Integer availability;
 
-	private String hasInventoryItems;
+	private Boolean hasInventoryItems;
 
 	private String dateCreated;
 
 	private String mediaFilename;
 
-	private String salesPaused;
+	private Boolean salesPaused;
 
 	private String id;
 
 	private String place;
 
-	private String productType;
+	private Integer productType;
 
 	private String dateActualFrom;
 
 	private String dateActualUntil;
 
-	private String isLong;
+	private Boolean isLong;
 
-	private String isFavorited;
+	private Boolean isFavorited;
 
 	private String timeUntilActual;
 
-	private String salesStarted;
+	private Boolean salesStarted;
 
 	private String dateSalesUntil;
 
-	private String salesEnded;
+	private Boolean salesEnded;
 
-	private String favoritedTimes;
+	private Integer favoritedTimes;
 
 	private EventPrice minPrice;
 
 	private EventPrice maxPrice;
 
-	private String hasFreeInventoryItems;
+	private Boolean hasFreeInventoryItems;
 
-	private String salesOngoing;
+	private Boolean salesOngoing;
 
 	private String companyMediaFilename;
 
@@ -76,11 +76,11 @@ public class KideAppEvent {
 		this.dateSalesFrom = dateSalesFrom;
 	}
 
-	public String getIsActual() {
+	public Boolean getIsActual() {
 		return isActual;
 	}
 
-	public void setIsActual(String isActual) {
+	public void setIsActual(Boolean isActual) {
 		this.isActual = isActual;
 	}
 
@@ -92,27 +92,19 @@ public class KideAppEvent {
 		this.companyName = companyName;
 	}
 
-	public String getAvailability() {
+	public Integer getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(String availability) {
+	public void setAvailability(Integer availability) {
 		this.availability = availability;
 	}
 
-	public String getPricingInformation() {
-		return pricingInformation;
-	}
-
-	public void setPricingInformation(String pricingInformation) {
-		this.pricingInformation = pricingInformation;
-	}
-
-	public String getHasInventoryItems() {
+	public Boolean getHasInventoryItems() {
 		return hasInventoryItems;
 	}
 
-	public void setHasInventoryItems(String hasInventoryItems) {
+	public void setHasInventoryItems(Boolean hasInventoryItems) {
 		this.hasInventoryItems = hasInventoryItems;
 	}
 
@@ -132,11 +124,11 @@ public class KideAppEvent {
 		this.mediaFilename = mediaFilename;
 	}
 
-	public String getSalesPaused() {
+	public Boolean getSalesPaused() {
 		return salesPaused;
 	}
 
-	public void setSalesPaused(String salesPaused) {
+	public void setSalesPaused(Boolean salesPaused) {
 		this.salesPaused = salesPaused;
 	}
 
@@ -156,11 +148,11 @@ public class KideAppEvent {
 		this.place = place;
 	}
 
-	public String getProductType() {
+	public Integer getProductType() {
 		return productType;
 	}
 
-	public void setProductType(String productType) {
+	public void setProductType(Integer productType) {
 		this.productType = productType;
 	}
 
@@ -180,19 +172,19 @@ public class KideAppEvent {
 		this.dateActualUntil = dateActualUntil;
 	}
 
-	public String getIsLong() {
+	public Boolean getIsLong() {
 		return isLong;
 	}
 
-	public void setIsLong(String isLong) {
+	public void setIsLong(Boolean isLong) {
 		this.isLong = isLong;
 	}
 
-	public String getIsFavorited() {
+	public Boolean getIsFavorited() {
 		return isFavorited;
 	}
 
-	public void setIsFavorited(String isFavorited) {
+	public void setIsFavorited(Boolean isFavorited) {
 		this.isFavorited = isFavorited;
 	}
 
@@ -204,11 +196,11 @@ public class KideAppEvent {
 		this.timeUntilActual = timeUntilActual;
 	}
 
-	public String getSalesStarted() {
+	public Boolean getSalesStarted() {
 		return salesStarted;
 	}
 
-	public void setSalesStarted(String salesStarted) {
+	public void setSalesStarted(Boolean salesStarted) {
 		this.salesStarted = salesStarted;
 	}
 
@@ -220,19 +212,19 @@ public class KideAppEvent {
 		this.dateSalesUntil = dateSalesUntil;
 	}
 
-	public String getSalesEnded() {
+	public Boolean getSalesEnded() {
 		return salesEnded;
 	}
 
-	public void setSalesEnded(String salesEnded) {
+	public void setSalesEnded(Boolean salesEnded) {
 		this.salesEnded = salesEnded;
 	}
 
-	public String getFavoritedTimes() {
+	public Integer getFavoritedTimes() {
 		return favoritedTimes;
 	}
 
-	public void setFavoritedTimes(String favoritedTimes) {
+	public void setFavoritedTimes(Integer favoritedTimes) {
 		this.favoritedTimes = favoritedTimes;
 	}
 
@@ -244,19 +236,27 @@ public class KideAppEvent {
 		this.minPrice = minPrice;
 	}
 
-	public String getHasFreeInventoryItems() {
+	public EventPrice getMaxPrice() {
+		return maxPrice;
+	}
+
+	public void setMaxPrice(EventPrice maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+
+	public Boolean getHasFreeInventoryItems() {
 		return hasFreeInventoryItems;
 	}
 
-	public void setHasFreeInventoryItems(String hasFreeInventoryItems) {
+	public void setHasFreeInventoryItems(Boolean hasFreeInventoryItems) {
 		this.hasFreeInventoryItems = hasFreeInventoryItems;
 	}
 
-	public String getSalesOngoing() {
+	public Boolean getSalesOngoing() {
 		return salesOngoing;
 	}
 
-	public void setSalesOngoing(String salesOngoing) {
+	public void setSalesOngoing(Boolean salesOngoing) {
 		this.salesOngoing = salesOngoing;
 	}
 
@@ -266,6 +266,14 @@ public class KideAppEvent {
 
 	public void setCompanyMediaFilename(String companyMediaFilename) {
 		this.companyMediaFilename = companyMediaFilename;
+	}
+
+	public String getPricingInformation() {
+		return pricingInformation;
+	}
+
+	public void setPricingInformation(String pricingInformation) {
+		this.pricingInformation = pricingInformation;
 	}
 
 	public String getName() {
@@ -282,14 +290,6 @@ public class KideAppEvent {
 
 	public void setTimeUntilSalesStart(String timeUntilSalesStart) {
 		this.timeUntilSalesStart = timeUntilSalesStart;
-	}
-
-	public void setMaxPrice(EventPrice maxPrice) {
-		this.maxPrice = maxPrice;
-	}
-
-	public EventPrice getMaxPrice() {
-		return maxPrice;
 	}
 
 	public String getTime() {
@@ -310,7 +310,7 @@ public class KideAppEvent {
 
 	@Override
 	public String toString() {
-		return "ClassPojo [dateSalesFrom = " + dateSalesFrom + ", isActual = " + isActual + ", companyName = "
+		return "KideAppEvent [dateSalesFrom = " + dateSalesFrom + ", isActual = " + isActual + ", companyName = "
 				+ companyName + ", availability = " + availability + ", hasInventoryItems = " + hasInventoryItems
 				+ ", dateCreated = " + dateCreated + ", mediaFilename = " + mediaFilename + ", salesPaused = "
 				+ salesPaused + ", id = " + id + ", place = " + place + ", productType = " + productType

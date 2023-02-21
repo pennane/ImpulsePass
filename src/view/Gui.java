@@ -35,7 +35,7 @@ public class Gui extends Application implements IGui {
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				System.out.println("Pyydetään........");
+				System.out.println("Pyydetään tapahtumia moottorilta..")
 				controller.requestEvents();
 			}
 		});
@@ -44,16 +44,20 @@ public class Gui extends Application implements IGui {
 
 	@Override
 	public void handleEvents(Optional<List<KideAppEvent>> events) {
-		System.out.println("Sain");
+		System.out.println("Sain vastauksen");
 		if (events.isPresent()) {
+			System.out.println("Sain" + foundEvents.size() + " tapahtumaa");
+
 			var foundEvents = events.get();
+
 			button.setText("Löytyi " + foundEvents.size() + " tapahtumaa");
 			this.events = foundEvents;
+
 			return;
 		}
+		System.out.println("Ei tapahatumia.");
 
 		button.setText("Tapahtumien hakeminen epäonnistui;");
-
 	}
 
 	public static void main(String[] args) {
