@@ -1,6 +1,6 @@
-package view;
+package controller;
 
-import config.Config;
+import view.Gui;
 
 /**
  * The main class of the project
