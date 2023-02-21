@@ -10,7 +10,26 @@ public class EventsDataPoint {
 	Date date;
 
 	public EventsDataPoint(List<KideAppEvent> events) {
-		date = new Date();
+		this.date = new Date();
 		this.events = events;
+	}
+
+	public EventsDataPoint() {
+	}
+
+	public List<KideAppEvent> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<KideAppEvent> events) {
+		this.events = events;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }

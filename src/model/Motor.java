@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,11 +22,17 @@ public class Motor extends Thread implements IMotor {
 	@Override
 	public void handleEventsRequest() {
 		Optional<List<KideAppEvent>> events = api.fetchEvents();
-		controller.receiveEvents(events);
 
 		if (events.isPresent()) {
 			Mongo.INSTANCE.insertEvents(events.get());
 		}
 
+		controller.receiveEvents(events);
+	}
+
+	public void handleDatabaseRequest() {
+		Date yesterday = new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24);
+		Date now = new Date();
+		Mongo.INSTANCE.fetchDataPoints(yesterday, now);
 	}
 }
