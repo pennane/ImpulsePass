@@ -21,7 +21,7 @@ public class AppController implements IAppControllerMToV, IAppControllerVToM {
 
 	@Override
 	public void requestEvents() {
-		this.motor.handleEventsRequest();
+		new Thread(() -> motor.handleEventsRequest()).start();
 	}
 
 	@Override

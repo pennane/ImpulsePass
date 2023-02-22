@@ -4,7 +4,7 @@
 
 ### Käynnistäminen
 
-view.StartProject::main
+controller.StartProject::main
 
 ### Env filu
 
