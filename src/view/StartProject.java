@@ -7,7 +7,6 @@ import config.Config;
  */
 public class StartProject {
 	public static void main(final String[] args) {
-		System.out.println(Config.get("OOGA"));
 		Gui.main(args);
 	}
 }

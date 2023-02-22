@@ -23,10 +23,9 @@ public class KideAppApi {
 	}
 
 	/**
-	* Internal wrapper for requesting anything from the api 
-	*/
+	 * Internal wrapper for requesting anything from the api
+	 */
 	private <T> Optional<T> request(Type returnType, String endpoint, String params) {
-
 		URL url = null;
 		KideAppApiResponse<T> response = null;
 
