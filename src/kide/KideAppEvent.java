@@ -310,7 +310,7 @@ public class KideAppEvent {
 
 	@Override
 	public String toString() {
-		return "KideAppEvent [dateSalesFrom = " + dateSalesFrom + ", isActual = " + isActual + ", companyName = "
+		/*return "KideAppEvent [dateSalesFrom = " + dateSalesFrom + ", isActual = " + isActual + ", companyName = "
 				+ companyName + ", availability = " + availability + ", hasInventoryItems = " + hasInventoryItems
 				+ ", dateCreated = " + dateCreated + ", mediaFilename = " + mediaFilename + ", salesPaused = "
 				+ salesPaused + ", id = " + id + ", place = " + place + ", productType = " + productType
@@ -322,5 +322,9 @@ public class KideAppEvent {
 				+ ", salesOngoing = " + salesOngoing + ", companyMediaFilename = " + companyMediaFilename + ", name = "
 				+ name + ", timeUntilSalesStart = " + timeUntilSalesStart + ", maxPrice = " + maxPrice + ", time = "
 				+ time + ", datePublishFrom = " + datePublishFrom + "]";
+				
+				*/
+		
+		return name;
 	}
 }
