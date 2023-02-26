@@ -310,17 +310,6 @@ public class KideAppEvent {
 
 	@Override
 	public String toString() {
-		return "KideAppEvent [dateSalesFrom = " + dateSalesFrom + ", isActual = " + isActual + ", companyName = "
-				+ companyName + ", availability = " + availability + ", hasInventoryItems = " + hasInventoryItems
-				+ ", dateCreated = " + dateCreated + ", mediaFilename = " + mediaFilename + ", salesPaused = "
-				+ salesPaused + ", id = " + id + ", place = " + place + ", productType = " + productType
-				+ ", dateActualFrom = " + dateActualFrom + ", pricingInformation = " + pricingInformation
-				+ ", dateActualUntil = " + dateActualUntil + ", isLong = " + isLong + ", isFavorited = " + isFavorited
-				+ ", timeUntilActual = " + timeUntilActual + ", salesStarted = " + salesStarted + ", dateSalesUntil = "
-				+ dateSalesUntil + ", salesEnded = " + salesEnded + ", favoritedTimes = " + favoritedTimes
-				+ ", minPrice = " + minPrice + ", hasFreeInventoryItems = " + hasFreeInventoryItems
-				+ ", salesOngoing = " + salesOngoing + ", companyMediaFilename = " + companyMediaFilename + ", name = "
-				+ name + ", timeUntilSalesStart = " + timeUntilSalesStart + ", maxPrice = " + maxPrice + ", time = "
-				+ time + ", datePublishFrom = " + datePublishFrom + "]";
+		return name;
 	}
 }
