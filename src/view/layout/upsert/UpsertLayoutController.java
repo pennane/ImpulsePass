@@ -2,7 +2,6 @@ package view.layout.upsert;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -39,9 +38,9 @@ public class UpsertLayoutController implements ILayoutController {
 		buttonFetchEvents.setDisable(false);
 		this.gui = gui;
 		listDataPoints.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			if(newValue != null) {
+			if (newValue != null) {
 				showEventsList(newValue);
-			}else {
+			} else {
 				listDataPoints.getSelectionModel().clearSelection();
 			}
 		});
@@ -63,25 +62,29 @@ public class UpsertLayoutController implements ILayoutController {
 			buttonFetchEvents.setText(events.get().size() + " epäonnistui");
 		}
 	}
-	
+
 	public void showEventsList(EventsDataPoint e) {
-		for(int i = 0; i < e.getEvents().size(); i++) {
+		listEvents.getItems().clear();
+		for (int i = 0; i < e.getEvents().size(); i++) {
 			listEvents.getItems().add(e.getEvents().get(i));
 		}
 	}
-	
-	public void showEventsDataPoints() {
-		listDataPoints.getItems().clear();
-		 LocalDate endDate = pickerEndDate.getValue().plusDays(1);
-         LocalDate startDate = pickerStartDate.getValue();
 
-         Date startDateObj = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-         Date endDateObj = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	public void showEventsDataPoints() {
+		if (pickerEndDate.getValue() == null || pickerStartDate.getValue() == null) {
+			return;
+		}
+		listDataPoints.getItems().clear();
+		LocalDate endDate = pickerEndDate.getValue().plusDays(1);
+		LocalDate startDate = pickerStartDate.getValue();
+
+		Date startDateObj = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		Date endDateObj = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDateObj, endDateObj);
 		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
-		for(int i = 0; i < eventDataPoints.size(); i++) {
+		for (int i = 0; i < eventDataPoints.size(); i++) {
 			listDataPoints.getItems().add(eventDataPoints.get(i));
 		}
-		
+
 	}
 }
