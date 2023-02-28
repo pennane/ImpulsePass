@@ -1,5 +1,8 @@
 package view.layout.notification;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import config.Config;
@@ -57,19 +60,32 @@ public class NotificationLayoutController implements ILayoutController {
 		infoLayoutBox.setVisible(true);
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
-		int saleTimeInDays = Integer.parseInt(e.getTimeUntilSalesStart()) / 86400;
-		int startTimeInDays = Integer.parseInt(e.getTimeUntilActual()) / 86400;
 		imgViewLogo.setImage(logo);
 		textEventName.setText(e.getName());
 		textCompanyName.setText(e.getCompanyName());
+
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+		ZonedDateTime eventStartDate = ZonedDateTime.parse(e.getDateActualUntil(), formatter);
+		ZonedDateTime saleStartDate = ZonedDateTime.parse(e.getDateSalesFrom(), formatter);
+		ZonedDateTime saleEndDate = ZonedDateTime.parse(e.getDateSalesUntil(), formatter);
+		ZonedDateTime dateTimeNow = ZonedDateTime.now();
+		long daysUntilStart = ChronoUnit.DAYS.between(dateTimeNow, eventStartDate);
+		long daysUntilSaleStart = ChronoUnit.DAYS.between(dateTimeNow, saleStartDate);
+		long daysUntilSaleEnd = ChronoUnit.DAYS.between(dateTimeNow, saleEndDate);
 		if (e.getAvailability() == 0 || e.getSalesEnded())
 			textSaleStart.setText("Sold out!");
 		else if (e.getSalesStarted())
-			textSaleStart.setText("Ticket sale started!");
+			textSaleStart.setText("Ticket sale started! " + daysUntilSaleEnd + " days left!");
 		else
-			textSaleStart.setText(saleTimeInDays + " days until ticket sale");
+			textSaleStart.setText(daysUntilSaleStart + " days until ticket sale");
 
-		textEventStart.setText(startTimeInDays + " days until start of event");
+		if (daysUntilStart == 0) {
+			textEventStart.setText("Event starts today!");
+		} else if (daysUntilStart < 0) {
+			textEventStart.setText("Event ended already!");
+		} else {
+			textEventStart.setText(daysUntilStart + " days until start of event");
+		}
 
 	}
 }
