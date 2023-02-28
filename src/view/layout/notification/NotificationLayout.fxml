@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.notification.NotificationLayoutController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="some top bar" BorderPane.alignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="My Events" BorderPane.alignment="CENTER" />
          </top>
+         <left>
+            <ListView fx:id="listViewEvents" prefHeight="178.0" prefWidth="801.0" BorderPane.alignment="CENTER" />
+         </left>
          <bottom>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="just some footer bro" BorderPane.alignment="CENTER" />
+            <VBox prefHeight="350.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="394.0" prefWidth="385.0">
+                     <children>
+                        <ImageView fx:id="imgViewLogo" fitHeight="216.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="textEventName" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="EventName" />
+                        <Text fx:id="textCompanyName" fill="#686565" layoutX="127.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22;" text="CompanyName" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="infoLayoutBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="385.0">
+                     <children>
+                        <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilTicketSales" />
+                        <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilEventStart" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </bottom>
       </BorderPane>
    </children>

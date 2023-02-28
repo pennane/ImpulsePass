@@ -15,6 +15,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoWriteException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -28,6 +29,7 @@ public enum Mongo {
 
 	MongoDatabase database;
 	MongoCollection<EventsDataPoint> eventsCollection;
+	MongoCollection<KideAppEvent> userSavedCollection;
 
 	Mongo() {
 		/// AAAAAAAAAAAAAA :D
@@ -40,10 +42,28 @@ public enum Mongo {
 
 		database = mongoClient.getDatabase(Config.get("DB_NAME"));
 		eventsCollection = database.getCollection("events", EventsDataPoint.class);
+		userSavedCollection = database.getCollection("userSavedEvents", KideAppEvent.class);
 	}
 
 	public void insertEvents(List<KideAppEvent> events) {
 		eventsCollection.insertOne(new EventsDataPoint(events));
+	}
+
+	public void insertUserSavedEvent(KideAppEvent event) {
+		try {
+			userSavedCollection.insertOne(event);
+		} catch (MongoWriteException e) {
+			e.printStackTrace();
+			if (e.getCode() == 11000) {
+				System.out.println("Trying to insert object with an id that already exists!");
+			}
+		}
+	}
+
+	public List<KideAppEvent> fetchUserSavedEvents() {
+		List<KideAppEvent> results = new ArrayList<>();
+		userSavedCollection.find().into(results);
+		return results;
 	}
 
 	public List<EventsDataPoint> fetchDataPoints(Date startDate, Date endDate) {

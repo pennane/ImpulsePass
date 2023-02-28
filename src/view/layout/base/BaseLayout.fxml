@@ -7,9 +7,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
-   <bottom>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="just some footer bro" BorderPane.alignment="CENTER" />
-   </bottom>
    <top>
       <HBox alignment="CENTER" prefHeight="60.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +15,7 @@
               <buttons>
                 <Button mnemonicParsing="false" onMouseClicked="#handleShowStatisticsLayout" text="Statistics" />
                   <Button mnemonicParsing="false" onMouseClicked="#handleShowUpsertLayout" text="Find new" />
-                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="Notifications" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="My Events" />
               </buttons>
             </ButtonBar>
          </children>
