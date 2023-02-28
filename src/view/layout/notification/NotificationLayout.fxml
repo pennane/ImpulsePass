@@ -17,7 +17,7 @@
             <ListView fx:id="listViewEvents" prefHeight="178.0" prefWidth="801.0" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
-            <VBox prefHeight="350.0" prefWidth="799.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="350.0" prefWidth="799.0" visible="false" BorderPane.alignment="CENTER">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="394.0" prefWidth="385.0">
                      <children>

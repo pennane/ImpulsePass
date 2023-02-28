@@ -19,7 +19,7 @@
       <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" />
       <Text layoutX="123.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" />
       <ImageView fx:id="imgViewLogo" fitHeight="210.0" fitWidth="377.0" layoutX="385.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox fx:id="infoLayoutBox" layoutX="374.0" layoutY="242.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10;">
+      <VBox fx:id="infoLayoutBox" layoutX="374.0" layoutY="242.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10;" visible="false">
          <children>
             <VBox prefHeight="80.0" prefWidth="410.0">
                <children>
