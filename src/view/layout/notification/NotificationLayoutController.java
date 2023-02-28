@@ -2,6 +2,7 @@ package view.layout.notification;
 
 import java.util.List;
 
+import config.Config;
 import database.Mongo;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -14,7 +15,6 @@ import view.Gui;
 import view.ILayoutController;
 
 public class NotificationLayoutController implements ILayoutController {
-	static final String imgUrlPrefix = "https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/";
 	Gui gui;
 	@FXML
 	private ListView<KideAppEvent> listViewEvents;
@@ -55,7 +55,8 @@ public class NotificationLayoutController implements ILayoutController {
 
 	public void showEventInfo(KideAppEvent e) {
 		infoLayoutBox.setVisible(true);
-		Image logo = new Image(imgUrlPrefix + e.getMediaFilename());
+		Image logo = new Image(Config.get("IMG_URL_PREFIX",
+				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
 		int saleTimeInDays = Integer.parseInt(e.getTimeUntilSalesStart()) / 86400;
 		int startTimeInDays = Integer.parseInt(e.getTimeUntilActual()) / 86400;
 		imgViewLogo.setImage(logo);

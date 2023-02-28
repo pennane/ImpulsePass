@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import config.Config;
 import database.EventsDataPoint;
 import database.Mongo;
 import javafx.fxml.FXML;
@@ -22,8 +23,6 @@ import view.ILayoutController;
 
 public class UpsertLayoutController implements ILayoutController {
 	Gui gui;
-	static final String imgUrlPrefix = "https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/";
-
 	@FXML
 	private Button buttonFetchEvents;
 	@FXML
@@ -117,7 +116,8 @@ public class UpsertLayoutController implements ILayoutController {
 
 	public void showEventInfo(KideAppEvent e) {
 		infoLayoutBox.setVisible(true);
-		Image logo = new Image(imgUrlPrefix + e.getMediaFilename());
+		Image logo = new Image(Config.get("IMG_URL_PREFIX",
+				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
 		int saleTimeInDays = Integer.parseInt(e.getTimeUntilSalesStart()) / 86400;
 		int startTimeInDays = Integer.parseInt(e.getTimeUntilActual()) / 86400;
 		imgViewLogo.setImage(logo);
