@@ -11,10 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoWriteException;
@@ -22,6 +24,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 
 import config.Config;
@@ -49,7 +52,10 @@ public enum Mongo {
 	}
 
 	public void insertEvents(List<KideAppEvent> events) {
+		System.out.println(events);
+		if(fetchLatest().events!= new EventsDataPoint(events)) {
 		eventsCollection.insertOne(new EventsDataPoint(events));
+		}
 	}
 
 	public void insertUserSavedEvent(KideAppEvent event) {
@@ -97,4 +103,14 @@ public enum Mongo {
 		return results;
 
 	}
+	
+	
+	public EventsDataPoint fetchLatest(){
+		List<EventsDataPoint> results = new ArrayList<>();
+		if(eventsCollection.countDocuments()>0) {
+		return eventsCollection.find().sort(new Document("_id", -1)).first();
+		}
+		return null;
+	}
+	
 }
