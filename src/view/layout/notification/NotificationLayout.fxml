@@ -17,7 +17,7 @@
             <ListView fx:id="listViewEvents" prefHeight="178.0" prefWidth="801.0" BorderPane.alignment="CENTER" />
          </left>
          <bottom>
-            <VBox prefHeight="350.0" prefWidth="799.0" visible="false" BorderPane.alignment="CENTER">
+            <VBox fx:id="infoLayoutBox" prefHeight="350.0" prefWidth="799.0" visible="false" BorderPane.alignment="CENTER">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="394.0" prefWidth="385.0">
                      <children>
@@ -26,7 +26,7 @@
                         <Text fx:id="textCompanyName" fill="#686565" layoutX="127.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22;" text="CompanyName" />
                      </children>
                   </VBox>
-                  <VBox fx:id="infoLayoutBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="385.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="282.0" prefWidth="385.0">
                      <children>
                         <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilTicketSales" />
                         <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilEventStart" />
