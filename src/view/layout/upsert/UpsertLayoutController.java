@@ -91,9 +91,7 @@ public class UpsertLayoutController implements ILayoutController {
 
 	public void showEventsList(EventsDataPoint e) {
 		listEvents.getItems().clear();
-		for (int i = 0; i < e.getEvents().size(); i++) {
-			listEvents.getItems().add(e.getEvents().get(i));
-		}
+		listEvents.getItems().addAll(e.getEvents());
 	}
 
 	public void showEventsDataPoints() {
@@ -108,9 +106,7 @@ public class UpsertLayoutController implements ILayoutController {
 		Date endDateObj = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDateObj, endDateObj);
 		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
-		for (int i = 0; i < eventDataPoints.size(); i++) {
-			listDataPoints.getItems().add(eventDataPoints.get(i));
-		}
+		listDataPoints.getItems().addAll(eventDataPoints);
 
 	}
 

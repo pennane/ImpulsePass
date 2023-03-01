@@ -51,9 +51,7 @@ public class NotificationLayoutController implements ILayoutController {
 
 	public void showEventsList() {
 		List<KideAppEvent> events = Mongo.INSTANCE.fetchUserSavedEvents();
-		for (int i = 0; i < events.size(); i++) {
-			listViewEvents.getItems().add(events.get(i));
-		}
+		listViewEvents.getItems().addAll(events);
 	}
 
 	public void showEventInfo(KideAppEvent e) {
@@ -72,8 +70,10 @@ public class NotificationLayoutController implements ILayoutController {
 		long daysUntilStart = ChronoUnit.DAYS.between(dateTimeNow, eventStartDate);
 		long daysUntilSaleStart = ChronoUnit.DAYS.between(dateTimeNow, saleStartDate);
 		long daysUntilSaleEnd = ChronoUnit.DAYS.between(dateTimeNow, saleEndDate);
-		if (e.getAvailability() == 0 || e.getSalesEnded())
+		if (e.getAvailability() == 0)
 			textSaleStart.setText("Sold out!");
+		else if(e.getSalesEnded())
+			textSaleStart.setText("Sales ended!");
 		else if (e.getSalesStarted())
 			textSaleStart.setText("Ticket sale started! " + daysUntilSaleEnd + " days left!");
 		else
