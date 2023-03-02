@@ -1,5 +1,6 @@
 package kide;
 
+import model.EventDetailed;
 import model.EventPrice;
 
 /*
@@ -70,6 +71,16 @@ public class KideAppEvent {
 
 	public String getDateSalesFrom() {
 		return dateSalesFrom;
+	}
+
+	public void updateData(EventDetailed e) {
+		this.availability = e.getAvailability();
+		this.dateActualFrom = e.getDateActualFrom();
+		this.dateActualUntil = e.getDateActualUntil();
+		this.dateSalesFrom = e.getDateSalesFrom();
+		this.dateSalesUntil = e.getDateSalesUntil();
+		this.salesEnded = e.getSalesEnded();
+		this.salesStarted = e.getSalesStarted();
 	}
 
 	public void setDateSalesFrom(String dateSalesFrom) {

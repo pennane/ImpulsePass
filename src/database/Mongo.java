@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.conversions.Bson;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -20,6 +21,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 import config.Config;
 import kide.KideAppEvent;
@@ -57,6 +59,15 @@ public enum Mongo {
 			if (e.getCode() == 11000) {
 				System.out.println("Trying to insert object with an id that already exists!");
 			}
+		}
+	}
+
+	public void replaceEvent(KideAppEvent event) {
+		try {
+			Bson filter = Filters.eq("_id", event.getId());
+			userSavedCollection.findOneAndReplace(filter, event);
+		} catch (MongoWriteException e) {
+			e.printStackTrace();
 		}
 	}
 
