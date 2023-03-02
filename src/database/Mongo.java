@@ -9,6 +9,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -25,7 +26,7 @@ import com.mongodb.client.MongoIterable;
 
 import config.Config;
 import kide.KideAppEvent;
-
+import static com.mongodb.client.model.Sorts.descending;
 public enum Mongo {
 	INSTANCE;
 
@@ -47,9 +48,10 @@ public enum Mongo {
 
 	public void insertEvents(List<KideAppEvent> events) {
 		System.out.println(events);
-		if(fetchLatest().events!= new EventsDataPoint(events)) {
-		eventsCollection.insertOne(new EventsDataPoint(events));
-		}
+		EventsDataPoint dataPoint = new EventsDataPoint(events);
+				if(fetchLatest().hashCode() != dataPoint.hashCode()) {
+				  eventsCollection.insertOne(dataPoint);
+				}
 	}
 
 	public List<EventsDataPoint> fetchDataPoints(Date startDate, Date endDate) {
@@ -64,12 +66,14 @@ public enum Mongo {
 	}
 	
 	
-	public EventsDataPoint fetchLatest(){
+	public Optional<EventsDataPoint> fetchLatest(){
 		List<EventsDataPoint> results = new ArrayList<>();
 		if(eventsCollection.countDocuments()>0) {
-		return eventsCollection.find().sort(new Document("_id", -1)).first();
+		    var latest = eventsCollection.find().sort(descending("date")).first();
+		    	    return Optional.of(latest);
+		
 		}
-		return null;
+		 return Optional.empty();
 	}
 	
 }
