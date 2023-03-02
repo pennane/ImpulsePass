@@ -5,9 +5,12 @@ import java.util.Optional;
 
 import controller.IAppControllerMToV;
 import kide.KideAppEvent;
+import model.KideAppEventDetails;
 
 public interface IGui {
 	void handleEvents(Optional<List<KideAppEvent>> events);
+
+	void handleEventDetails(Optional<KideAppEventDetails> event);
 
 	IAppControllerMToV getController();
 }

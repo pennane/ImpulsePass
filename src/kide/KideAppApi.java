@@ -11,6 +11,9 @@ import java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import database.ProductAdapter;
+import model.KideAppEventDetails;
+
 public class KideAppApi {
 	public static final String API_BASE = "https://api.kide.app/api/";
 	public static final String DEFAULT_EVENT_PARAMS = "city=P%C3%A4%C3%A4kaupunkiseutu&productType=1";
@@ -41,6 +44,18 @@ public class KideAppApi {
 		}
 
 		return Optional.ofNullable(response.getModel());
+	}
+
+	public Optional<KideAppEventDetails> fetchEventDetails(String id) {
+		Type type = new TypeToken<KideAppApiResponse<ProductAdapter<KideAppEventDetails>>>() {
+		}.getType();
+		Optional<ProductAdapter<KideAppEventDetails>> res = request(type, PRODUCTS_ENDPOINT + "/" + id, "");
+
+		if (res.isEmpty()) {
+			return Optional.empty();
+		}
+
+		return Optional.ofNullable(res.get().getProduct());
 	}
 
 	public Optional<List<KideAppEvent>> fetchEvents() {
