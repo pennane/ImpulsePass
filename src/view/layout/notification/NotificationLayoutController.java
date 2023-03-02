@@ -78,11 +78,11 @@ public class NotificationLayoutController implements ILayoutController {
 		long daysUntilStart = ChronoUnit.DAYS.between(dateTimeNow, eventStartDate);
 		long daysUntilSaleStart = ChronoUnit.DAYS.between(dateTimeNow, saleStartDate);
 		long daysUntilSaleEnd = ChronoUnit.DAYS.between(dateTimeNow, saleEndDate);
-		if (e.getAvailability() == 0)
+		if (latestEvent.getAvailability() == 0)
 			textSaleStart.setText("Sold out!");
-		else if (e.getSalesEnded())
+		else if (latestEvent.getSalesEnded())
 			textSaleStart.setText("Sales ended!");
-		else if (e.getSalesStarted())
+		else if (latestEvent.getSalesStarted())
 			textSaleStart.setText("Ticket sale started! " + daysUntilSaleEnd + " days left!");
 		else
 			textSaleStart.setText(daysUntilSaleStart + " days until ticket sale");
