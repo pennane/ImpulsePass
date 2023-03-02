@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import database.ProductAdapter;
+import model.CustomGson;
 import model.KideAppEventDetails;
 
 public class KideAppApi {
@@ -22,7 +23,7 @@ public class KideAppApi {
 	Gson gson;
 
 	public KideAppApi() {
-		gson = new Gson();
+		gson = CustomGson.INSTANCE.getGson();
 	}
 
 	/**
@@ -63,5 +64,4 @@ public class KideAppApi {
 		}.getType();
 		return request(type, PRODUCTS_ENDPOINT, DEFAULT_EVENT_PARAMS);
 	}
-
 }

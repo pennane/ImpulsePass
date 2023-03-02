@@ -1,10 +1,6 @@
 package view.layout.statistics;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,39 +33,34 @@ public class StatisticsLayoutController implements ILayoutController {
 		return this;
 	}
 
-	public LocalDateTime getMonthFromDate(String date) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
-		LocalDateTime dateTime = LocalDateTime.parse(date, formatter).withDayOfMonth(1).withHour(0).withMinute(0)
-				.withSecond(0).withNano(0);
-		return dateTime;
+	public ZonedDateTime getClampedDate(ZonedDateTime date) {
+		return date.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
 	}
 
-	public void drawNewChart(List<Entry<LocalDateTime, Integer>> entries, String title, String name) {
+	public void drawNewChart(List<Entry<ZonedDateTime, Integer>> entries, String title, String name) {
 
 		lineChart.setTitle(title);
 		XYChart.Series<String, Integer> eventSeries = new Series<>();
 		eventSeries.setName(name);
 
-		for (Entry<LocalDateTime, Integer> entry : entries) {
+		for (Entry<ZonedDateTime, Integer> entry : entries) {
 			eventSeries.getData().add(new Data<String, Integer>(entry.getKey().toString(), entry.getValue()));
 		}
 
 		lineChart.getData().add(eventSeries);
 	}
 
-	public List<Entry<LocalDateTime, Integer>> createEntries() {
-		LocalDate endDate = LocalDate.now();
-		LocalDate startDate = LocalDate.now().minusDays(30);
-		Date startDateObj = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		Date endDateObj = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	public List<Entry<ZonedDateTime, Integer>> createEntries() {
+		ZonedDateTime endDate = ZonedDateTime.now();
+		ZonedDateTime startDate = ZonedDateTime.now().minusDays(30);
 
-		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDateObj, endDateObj);
+		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDate, endDate);
 		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
 
-		Map<LocalDateTime, Integer> map = new HashMap<>();
+		Map<ZonedDateTime, Integer> map = new HashMap<>();
 
 		for (KideAppEvent event : events) {
-			LocalDateTime month = getMonthFromDate(event.getDateActualFrom());
+			ZonedDateTime month = getClampedDate(event.getDateActualFrom());
 			map.put(month, map.getOrDefault(month, 0) + 1);
 		}
 

@@ -6,8 +6,8 @@ import static com.mongodb.client.model.Filters.lte;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.bson.Document;
@@ -38,7 +38,7 @@ public enum Mongo {
 		/// AAAAAAAAAAAAAA :D
 		ConnectionString connectionString = new ConnectionString(Config.get("CLUSTER_URL"));
 		CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-				fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+				fromProviders(new ZonedDateTimeCodecProvider(), PojoCodecProvider.builder().automatic(true).build()));
 		MongoClientSettings clientSettings = MongoClientSettings.builder().applyConnectionString(connectionString)
 				.codecRegistry(codecRegistry).build();
 		MongoClient mongoClient = MongoClients.create(clientSettings);
@@ -87,10 +87,10 @@ public enum Mongo {
 		return results;
 	}
 
-	public List<EventsDataPoint> fetchDataPoints(Date startDate, Date endDate) {
+	public List<EventsDataPoint> fetchDataPoints(ZonedDateTime startDate, ZonedDateTime endDate) {
 		List<EventsDataPoint> results = new ArrayList<>();
 
-		var filter = and(gte("date", startDate), lte("date", endDate));
+		var filter = and(gte("date", startDate.toInstant()), lte("date", endDate.toInstant()));
 
 		eventsCollection.find(filter).into(results);
 

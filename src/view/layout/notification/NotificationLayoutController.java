@@ -1,7 +1,6 @@
 package view.layout.notification;
 
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
@@ -73,14 +72,12 @@ public class NotificationLayoutController implements ILayoutController {
 		textEventName.setText(latestEvent.getName());
 		textCompanyName.setText(latestEvent.getCompanyName());
 
-		DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-		ZonedDateTime eventStartDate = ZonedDateTime.parse(latestEvent.getDateActualUntil(), formatter);
-		ZonedDateTime saleStartDate = ZonedDateTime.parse(latestEvent.getDateSalesFrom(), formatter);
-		ZonedDateTime saleEndDate = ZonedDateTime.parse(latestEvent.getDateSalesUntil(), formatter);
-		ZonedDateTime dateTimeNow = ZonedDateTime.now();
-		long daysUntilStart = ChronoUnit.DAYS.between(dateTimeNow, eventStartDate);
-		long daysUntilSaleStart = ChronoUnit.DAYS.between(dateTimeNow, saleStartDate);
-		long daysUntilSaleEnd = ChronoUnit.DAYS.between(dateTimeNow, saleEndDate);
+		ZonedDateTime nowDate = ZonedDateTime.now();
+
+		long daysUntilStart = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateActualUntil());
+		long daysUntilSaleStart = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateSalesFrom());
+		long daysUntilSaleEnd = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateSalesUntil());
+
 		if (latestEvent.getAvailability() == 0)
 			textSaleStart.setText("Sold out!");
 		else if (latestEvent.getSalesEnded())

@@ -1,8 +1,7 @@
 package view.layout.upsert;
 
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,13 +97,13 @@ public class UpsertLayoutController implements ILayoutController {
 		if (pickerEndDate.getValue() == null || pickerStartDate.getValue() == null) {
 			return;
 		}
-		listDataPoints.getItems().clear();
-		LocalDate endDate = pickerEndDate.getValue().plusDays(1);
-		LocalDate startDate = pickerStartDate.getValue();
 
-		Date startDateObj = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		Date endDateObj = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDateObj, endDateObj);
+		listDataPoints.getItems().clear();
+
+		ZonedDateTime endDate = pickerEndDate.getValue().plusDays(1).atStartOfDay(ZoneId.systemDefault());
+		ZonedDateTime startDate = pickerStartDate.getValue().atStartOfDay(ZoneId.systemDefault());
+
+		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDate, endDate);
 		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
 		listDataPoints.getItems().addAll(eventDataPoints);
 

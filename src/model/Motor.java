@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,8 +37,9 @@ public class Motor extends Thread implements IMotor {
 	}
 
 	public void handleDatabaseRequest() {
-		Date yesterday = new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 24);
-		Date now = new Date();
+		ZonedDateTime now = ZonedDateTime.now();
+		ZonedDateTime yesterday = now.minusDays(1);
+
 		Mongo.INSTANCE.fetchDataPoints(yesterday, now);
 	}
 }
