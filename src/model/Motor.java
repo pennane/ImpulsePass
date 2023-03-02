@@ -32,7 +32,7 @@ public class Motor extends Thread implements IMotor {
 
 	@Override
 	public void handleEventDetailsRequest(String id) {
-		EventDetailed event = api.fetchEventDetails(id);
+		Optional<KideAppEventDetails> event = api.fetchEventDetails(id);
 		controller.receiveEventDetails(event);
 	}
 

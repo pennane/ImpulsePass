@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import javafx.application.Platform;
 import kide.KideAppEvent;
-import model.EventDetailed;
 import model.IMotor;
+import model.KideAppEventDetails;
 import model.Motor;
 import view.IGui;
 
@@ -31,7 +31,7 @@ public class AppController implements IAppControllerMToV, IAppControllerVToM {
 	}
 
 	@Override
-	public void receiveEventDetails(EventDetailed e) {
+	public void receiveEventDetails(Optional<KideAppEventDetails> e) {
 		Platform.runLater(() -> gui.handleEventDetails(e));
 	}
 

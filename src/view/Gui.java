@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import kide.KideAppEvent;
-import model.EventDetailed;
+import model.KideAppEventDetails;
 import view.layout.base.BaseLayoutController;
 import view.layout.notification.NotificationLayoutController;
 import view.layout.upsert.UpsertLayoutController;
@@ -93,7 +93,7 @@ public class Gui extends Application implements IGui {
 	}
 
 	@Override
-	public void handleEventDetails(EventDetailed event) {
+	public void handleEventDetails(Optional<KideAppEventDetails> event) {
 		if (currentLayoutController instanceof NotificationLayoutController) {
 			((NotificationLayoutController) currentLayoutController).receiveEventDetails(event);
 		}

@@ -1,7 +1,9 @@
 package kide;
 
-import model.EventDetailed;
+import java.util.Optional;
+
 import model.EventPrice;
+import model.KideAppEventDetails;
 
 /*
  * 
@@ -73,8 +75,9 @@ public class KideAppEvent {
 		return dateSalesFrom;
 	}
 
-	public void updateData(EventDetailed e) {
-		if (e != null) {
+	public void updateData(Optional<KideAppEventDetails> data) {
+		if (data.isPresent()) {
+			var e = data.get();
 			this.availability = e.getAvailability();
 			this.dateActualFrom = e.getDateActualFrom();
 			this.dateActualUntil = e.getDateActualUntil();

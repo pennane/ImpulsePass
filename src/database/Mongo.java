@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
@@ -62,10 +63,19 @@ public enum Mongo {
 		}
 	}
 
-	public void replaceEvent(KideAppEvent event) {
+	public void updateEvent(KideAppEvent event) {
 		try {
 			Bson filter = Filters.eq("_id", event.getId());
-			userSavedCollection.findOneAndReplace(filter, event);
+			userSavedCollection.findOneAndUpdate(filter, new Document("$set", event));
+		} catch (MongoWriteException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteEvent(KideAppEvent event) {
+		try {
+			Bson filter = Filters.eq("_id", event.getId());
+			userSavedCollection.findOneAndDelete(filter);
 		} catch (MongoWriteException e) {
 			e.printStackTrace();
 		}

@@ -1,11 +1,11 @@
 package model;
 
-public class EventDetailed {
+public class KideAppEventDetails {
 	private String dateActualFrom, dateActualUntil, dateSalesFrom, dateSalesUntil;
 	private Boolean salesStarted, salesEnded;
 	private int availability;
 
-	public EventDetailed() {
+	public KideAppEventDetails() {
 
 	}
 

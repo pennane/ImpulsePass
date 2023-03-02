@@ -4,6 +4,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Optional;
 
 import config.Config;
 import database.Mongo;
@@ -14,7 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import kide.KideAppEvent;
-import model.EventDetailed;
+import model.EventListCell;
+import model.KideAppEventDetails;
 import view.Gui;
 import view.ILayoutController;
 
@@ -54,15 +56,16 @@ public class NotificationLayoutController implements ILayoutController {
 	public void showEventsList() {
 		List<KideAppEvent> events = Mongo.INSTANCE.fetchUserSavedEvents();
 		listViewEvents.getItems().addAll(events);
+		listViewEvents.setCellFactory(param -> new EventListCell());
 	}
 
-	public void receiveEventDetails(EventDetailed e) {
+	public void receiveEventDetails(Optional<KideAppEventDetails> e) {
 		displayEventInfo(e);
 	}
 
-	public void displayEventInfo(EventDetailed e) {
+	public void displayEventInfo(Optional<KideAppEventDetails> e) {
 		latestEvent.updateData(e);
-		Mongo.INSTANCE.replaceEvent(latestEvent);
+		Mongo.INSTANCE.updateEvent(latestEvent);
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/")
 				+ latestEvent.getMediaFilename());
