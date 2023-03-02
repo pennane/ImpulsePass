@@ -24,8 +24,14 @@ public class Gui extends Application implements IGui {
 	BorderPane layoutBase;
 	BaseLayoutController layoutBaseController;
 
-	AnchorPane currentLayout;
-	ILayoutController currentLayoutController;
+	AnchorPane statisticsLayout;
+	ILayoutController statisticsLayoutController;
+
+	AnchorPane upsertLayout;
+	ILayoutController upsertLayoutController;
+
+	AnchorPane notificationLayout;
+	ILayoutController notificationLayoutController;
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -37,6 +43,24 @@ public class Gui extends Application implements IGui {
 		layoutBase = (BorderPane) loader.load();
 		layoutBaseController = loader.getController();
 		layoutBaseController.initialize(this);
+
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("layout/statistics/StatisticsLayout.fxml"));
+		statisticsLayout = (AnchorPane) loader.load();
+		statisticsLayoutController = loader.getController();
+		statisticsLayoutController.initialize(this);
+
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("layout/upsert/UpsertLayout.fxml"));
+		upsertLayout = (AnchorPane) loader.load();
+		upsertLayoutController = loader.getController();
+		upsertLayoutController.initialize(this);
+
+		loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("layout/notification/NotificationLayout.fxml"));
+		notificationLayout = (AnchorPane) loader.load();
+		notificationLayoutController = loader.getController();
+		notificationLayoutController.initialize(this);
 
 		// Show some default layout
 		showStatisticsLayout();
@@ -52,50 +76,30 @@ public class Gui extends Application implements IGui {
 		launch(args);
 	}
 
+	public void showUpsertLayout() {
+		this.layoutBase.setCenter(upsertLayout);
+	}
+
+	public void showStatisticsLayout() {
+		this.layoutBase.setCenter(statisticsLayout);
+	}
+
+	public void showNotificationLayout() {
+		this.layoutBase.setCenter(notificationLayout);
+	}
+
 	@Override
 	public IAppControllerMToV getController() {
 		return controller;
 	}
 
-	public void showLayout(String fxml) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource(fxml));
-
-			currentLayout = (AnchorPane) loader.load();
-			currentLayoutController = loader.getController();
-			currentLayoutController.initialize(this);
-
-			this.layoutBase.setCenter(currentLayout);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void showUpsertLayout() {
-		showLayout("layout/upsert/UpsertLayout.fxml");
-	}
-
-	public void showStatisticsLayout() {
-		showLayout("layout/statistics/StatisticsLayout.fxml");
-	}
-
-	public void showNotificationLayout() {
-		showLayout("layout/notification/NotificationLayout.fxml");
-	}
-
 	@Override
 	public void handleEvents(Optional<List<KideAppEvent>> events) {
-		if (currentLayoutController instanceof UpsertLayoutController) {
-			((UpsertLayoutController) currentLayoutController).receiveFetchedEvents(events);
-		}
-
+		((UpsertLayoutController) upsertLayoutController).receiveFetchedEvents(events);
 	}
 
 	@Override
 	public void handleEventDetails(Optional<KideAppEventDetails> event) {
-		if (currentLayoutController instanceof NotificationLayoutController) {
-			((NotificationLayoutController) currentLayoutController).receiveEventDetails(event);
-		}
+		((NotificationLayoutController) notificationLayoutController).receiveEventDetails(event);
 	}
 }
