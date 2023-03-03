@@ -3,29 +3,36 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <top>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="some top bar" BorderPane.alignment="CENTER" />
          </top>
-         <bottom>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="just some footer bro" BorderPane.alignment="CENTER" />
-         </bottom>
          <center>
             <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
             </LineChart>
          </center>
+         <left>
+            <VBox>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose chart" />
+                  <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </left>
       </BorderPane>
    </children>
 </AnchorPane>
