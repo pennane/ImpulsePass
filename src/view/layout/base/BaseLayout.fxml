@@ -2,23 +2,25 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
-   <bottom>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="just some footer bro" BorderPane.alignment="CENTER" />
-   </bottom>
    <top>
       <HBox alignment="CENTER" prefHeight="60.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kideappdataanalyysivehje" textOrigin="CENTER" HBox.hgrow="SOMETIMES" />
+            <ImageView fitHeight="54.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../res/app_logo.png" />
+               </image>
+            </ImageView>
             <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
                 <Button mnemonicParsing="false" onMouseClicked="#handleShowStatisticsLayout" text="Statistics" />
                   <Button mnemonicParsing="false" onMouseClicked="#handleShowUpsertLayout" text="Find new" />
-                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="Notifications" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="My Events" />
               </buttons>
             </ButtonBar>
          </children>

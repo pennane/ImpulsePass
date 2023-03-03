@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <top>
@@ -14,6 +16,16 @@
          <bottom>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="just some footer bro" BorderPane.alignment="CENTER" />
          </bottom>
+         <center>
+            <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
