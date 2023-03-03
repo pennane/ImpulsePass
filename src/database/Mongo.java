@@ -31,6 +31,7 @@ import com.mongodb.client.model.Filters;
 import config.Config;
 import kide.KideAppEvent;
 import static com.mongodb.client.model.Sorts.descending;
+
 public enum Mongo {
 	INSTANCE;
 
@@ -53,11 +54,10 @@ public enum Mongo {
 	}
 
 	public void insertEvents(List<KideAppEvent> events) {
-		System.out.println(events);
 		EventsDataPoint dataPoint = new EventsDataPoint(events);
-				if(fetchLatest().hashCode() != dataPoint.hashCode()) {
-				  eventsCollection.insertOne(dataPoint);
-				}
+		if (fetchLatest().hashCode() != dataPoint.hashCode()) {
+			eventsCollection.insertOne(dataPoint);
+		}
 	}
 
 	public void insertUserSavedEvent(KideAppEvent event) {
@@ -105,16 +105,15 @@ public enum Mongo {
 		return results;
 
 	}
-	
-	
-	public Optional<EventsDataPoint> fetchLatest(){
+
+	public Optional<EventsDataPoint> fetchLatest() {
 		List<EventsDataPoint> results = new ArrayList<>();
-		if(eventsCollection.countDocuments()>0) {
-		    var latest = eventsCollection.find().sort(descending("date")).first();
-		    	    return Optional.of(latest);
-		
+		if (eventsCollection.countDocuments() > 0) {
+			var latest = eventsCollection.find().sort(descending("date")).first();
+			return Optional.of(latest);
+
 		}
-		 return Optional.empty();
+		return Optional.empty();
 	}
-	
+
 }
