@@ -8,6 +8,7 @@ import java.util.Optional;
 import config.Config;
 import database.Mongo;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,6 +37,8 @@ public class NotificationLayoutController implements ILayoutController {
 	private Text textEventStart;
 	@FXML
 	private VBox infoLayoutBox;
+	@FXML
+	private Button btnRefresh;
 
 	@Override
 	public ILayoutController initialize(Gui gui) {
@@ -54,8 +57,13 @@ public class NotificationLayoutController implements ILayoutController {
 
 	public void showEventsList() {
 		List<KideAppEvent> events = Mongo.INSTANCE.fetchUserSavedEvents();
+		listViewEvents.getItems().clear();
 		listViewEvents.getItems().addAll(events);
 		listViewEvents.setCellFactory(param -> new EventListCell());
+	}
+
+	public void insertEventToList(KideAppEvent e) {
+		listViewEvents.getItems().add(e);
 	}
 
 	public void receiveEventDetails(Optional<KideAppEventDetails> e) {

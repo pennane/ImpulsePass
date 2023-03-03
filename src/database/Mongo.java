@@ -18,6 +18,7 @@ import org.bson.conversions.Bson;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoWriteException;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -57,10 +58,13 @@ public enum Mongo {
 			userSavedCollection.insertOne(event);
 		} catch (MongoWriteException e) {
 			e.printStackTrace();
-			if (e.getCode() == 11000) {
-				System.out.println("Trying to insert object with an id that already exists!");
-			}
 		}
+	}
+
+	public Boolean savedEventExists(KideAppEvent e) {
+		Bson query = new Document("_id", e.getId()); // assuming the event ID is stored in a field called "event_id"
+		FindIterable<KideAppEvent> result = userSavedCollection.find(query);
+		return result.first() != null;
 	}
 
 	public void updateEvent(KideAppEvent event) {

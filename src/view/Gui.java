@@ -88,6 +88,10 @@ public class Gui extends Application implements IGui {
 		this.layoutBase.setCenter(notificationLayout);
 	}
 
+	public NotificationLayoutController getNotificationLayoutController() {
+		return (NotificationLayoutController) notificationLayoutController;
+	}
+
 	@Override
 	public IAppControllerMToV getController() {
 		return controller;
