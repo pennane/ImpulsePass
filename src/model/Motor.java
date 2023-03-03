@@ -3,14 +3,12 @@ package model;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import controller.IAppControllerVToM;
 import database.Mongo;
 import kide.KideAppApi;
 import kide.KideAppEvent;
 import model.schedule.Scheduler;
-import model.schedule.Task;
 import model.schedule.TaskConvertter;
 
 public class Motor extends Thread implements IMotor {
@@ -25,19 +23,17 @@ public class Motor extends Thread implements IMotor {
 
 		var userSavedEvents = Mongo.INSTANCE.fetchUserSavedEvents();
 
-		var salesNotStartedTasks = userSavedEvents.stream().filter(e -> e.getDateSalesFrom().compareTo(now) > 0)
-				.map(TaskConvertter::toSalesStartingTask).collect(Collectors.toList());
+		userSavedEvents
+			.stream()
+			.filter(e -> e.getDateSalesFrom().compareTo(now) > 0)
+			.map(TaskConvertter::toSalesStartingTask)
+			.forEach(Scheduler.INSTANCE::schedule);
 
-		var eventsNotStartedTasks = userSavedEvents.stream().filter(e -> e.getDateActualFrom().compareTo(now) > 0)
-				.map(TaskConvertter::toEventStartingTask).collect(Collectors.toList());
-
-		for (Task t : salesNotStartedTasks) {
-			Scheduler.INSTANCE.schedule(t);
-		}
-
-		for (Task t : eventsNotStartedTasks) {
-			Scheduler.INSTANCE.schedule(t);
-		}
+		userSavedEvents
+			.stream()
+			.filter(e -> e.getDateActualFrom().compareTo(now) > 0)
+			.map(TaskConvertter::toEventStartingTask)
+			.forEach(Scheduler.INSTANCE::schedule);
 
 	}
 
