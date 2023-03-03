@@ -111,6 +111,13 @@ public class UpsertLayoutController implements ILayoutController {
 
 	public void showEventInfo(KideAppEvent e) {
 		infoLayoutBox.setVisible(true);
+		if (Mongo.INSTANCE.savedEventExists(e)) {
+			buttonSaveEvent.setDisable(true);
+			buttonSaveEvent.setText("Added to my events");
+		} else {
+			buttonSaveEvent.setDisable(false);
+			buttonSaveEvent.setText("Save to my events");
+		}
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
 		int saleTimeInDays = Integer.parseInt(e.getTimeUntilSalesStart()) / 86400;
@@ -130,6 +137,11 @@ public class UpsertLayoutController implements ILayoutController {
 	}
 
 	public void saveEvent() {
-		Mongo.INSTANCE.insertUserSavedEvent(listEvents.getSelectionModel().getSelectedItem());
+		buttonSaveEvent.setDisable(true);
+		buttonSaveEvent.setText("Added to my events");
+		if (!Mongo.INSTANCE.savedEventExists(listEvents.getSelectionModel().getSelectedItem())) {
+			Mongo.INSTANCE.insertUserSavedEvent(listEvents.getSelectionModel().getSelectedItem());
+			gui.getNotificationLayoutController().insertEventToList(listEvents.getSelectionModel().getSelectedItem());
+		}
 	}
 }
