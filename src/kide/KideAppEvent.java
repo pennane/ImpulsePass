@@ -1,5 +1,6 @@
 package kide;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 import model.EventPrice;
@@ -11,7 +12,7 @@ import model.KideAppEventDetails;
  * 
  */
 public class KideAppEvent {
-	private String dateSalesFrom;
+	private ZonedDateTime dateSalesFrom;
 
 	private Boolean isActual;
 
@@ -21,7 +22,7 @@ public class KideAppEvent {
 
 	private Boolean hasInventoryItems;
 
-	private String dateCreated;
+	private ZonedDateTime dateCreated;
 
 	private String mediaFilename;
 
@@ -33,9 +34,9 @@ public class KideAppEvent {
 
 	private Integer productType;
 
-	private String dateActualFrom;
+	private ZonedDateTime dateActualFrom;
 
-	private String dateActualUntil;
+	private ZonedDateTime dateActualUntil;
 
 	private Boolean isLong;
 
@@ -45,7 +46,7 @@ public class KideAppEvent {
 
 	private Boolean salesStarted;
 
-	private String dateSalesUntil;
+	private ZonedDateTime dateSalesUntil;
 
 	private Boolean salesEnded;
 
@@ -69,11 +70,7 @@ public class KideAppEvent {
 
 	private String time;
 
-	private String datePublishFrom;
-
-	public String getDateSalesFrom() {
-		return dateSalesFrom;
-	}
+	private ZonedDateTime datePublishFrom;
 
 	public void updateData(Optional<KideAppEventDetails> data) {
 		if (data.isPresent()) {
@@ -88,7 +85,11 @@ public class KideAppEvent {
 		}
 	}
 
-	public void setDateSalesFrom(String dateSalesFrom) {
+	public ZonedDateTime getDateSalesFrom() {
+		return dateSalesFrom;
+	}
+
+	public void setDateSalesFrom(ZonedDateTime dateSalesFrom) {
 		this.dateSalesFrom = dateSalesFrom;
 	}
 
@@ -124,11 +125,11 @@ public class KideAppEvent {
 		this.hasInventoryItems = hasInventoryItems;
 	}
 
-	public String getDateCreated() {
+	public ZonedDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(ZonedDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -172,19 +173,19 @@ public class KideAppEvent {
 		this.productType = productType;
 	}
 
-	public String getDateActualFrom() {
+	public ZonedDateTime getDateActualFrom() {
 		return dateActualFrom;
 	}
 
-	public void setDateActualFrom(String dateActualFrom) {
+	public void setDateActualFrom(ZonedDateTime dateActualFrom) {
 		this.dateActualFrom = dateActualFrom;
 	}
 
-	public String getDateActualUntil() {
+	public ZonedDateTime getDateActualUntil() {
 		return dateActualUntil;
 	}
 
-	public void setDateActualUntil(String dateActualUntil) {
+	public void setDateActualUntil(ZonedDateTime dateActualUntil) {
 		this.dateActualUntil = dateActualUntil;
 	}
 
@@ -220,11 +221,11 @@ public class KideAppEvent {
 		this.salesStarted = salesStarted;
 	}
 
-	public String getDateSalesUntil() {
+	public ZonedDateTime getDateSalesUntil() {
 		return dateSalesUntil;
 	}
 
-	public void setDateSalesUntil(String dateSalesUntil) {
+	public void setDateSalesUntil(ZonedDateTime dateSalesUntil) {
 		this.dateSalesUntil = dateSalesUntil;
 	}
 
@@ -316,11 +317,11 @@ public class KideAppEvent {
 		this.time = time;
 	}
 
-	public String getDatePublishFrom() {
+	public ZonedDateTime getDatePublishFrom() {
 		return datePublishFrom;
 	}
 
-	public void setDatePublishFrom(String datePublishFrom) {
+	public void setDatePublishFrom(ZonedDateTime datePublishFrom) {
 		this.datePublishFrom = datePublishFrom;
 	}
 
@@ -328,4 +329,5 @@ public class KideAppEvent {
 	public String toString() {
 		return name;
 	}
+
 }

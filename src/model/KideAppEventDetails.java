@@ -1,27 +1,33 @@
 package model;
 
+import java.time.ZonedDateTime;
+
 public class KideAppEventDetails {
-	private String dateActualFrom, dateActualUntil, dateSalesFrom, dateSalesUntil;
-	private Boolean salesStarted, salesEnded;
+	private ZonedDateTime dateActualFrom;
+	private ZonedDateTime dateActualUntil;
+	private ZonedDateTime dateSalesFrom;
+	private ZonedDateTime dateSalesUntil;
+	private Boolean salesStarted;
+	private Boolean salesEnded;
 	private int availability;
 
 	public KideAppEventDetails() {
 
 	}
 
-	public String getDateActualFrom() {
+	public ZonedDateTime getDateActualFrom() {
 		return dateActualFrom;
 	}
 
-	public String getDateActualUntil() {
+	public ZonedDateTime getDateActualUntil() {
 		return dateActualUntil;
 	}
 
-	public String getDateSalesFrom() {
+	public ZonedDateTime getDateSalesFrom() {
 		return dateSalesFrom;
 	}
 
-	public String getDateSalesUntil() {
+	public ZonedDateTime getDateSalesUntil() {
 		return dateSalesUntil;
 	}
 
@@ -37,19 +43,19 @@ public class KideAppEventDetails {
 		return availability;
 	}
 
-	public void setDateActualFrom(String date) {
+	public void setDateActualFrom(ZonedDateTime date) {
 		dateActualFrom = date;
 	}
 
-	public void setDateActualUntil(String date) {
+	public void setDateActualUntil(ZonedDateTime date) {
 		dateActualUntil = date;
 	}
 
-	public void setDateSalesFrom(String date) {
+	public void setDateSalesFrom(ZonedDateTime date) {
 		dateSalesFrom = date;
 	}
 
-	public void setDateSalesUntil(String date) {
+	public void setDateSalesUntil(ZonedDateTime date) {
 		dateSalesUntil = date;
 	}
 
