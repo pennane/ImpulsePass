@@ -62,7 +62,7 @@ public enum Mongo {
 	}
 
 	public Boolean savedEventExists(KideAppEvent e) {
-		Bson query = new Document("_id", e.getId()); // assuming the event ID is stored in a field called "event_id"
+		Bson query = new Document("_id", e.getId());
 		FindIterable<KideAppEvent> result = userSavedCollection.find(query);
 		return result.first() != null;
 	}
