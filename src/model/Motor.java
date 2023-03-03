@@ -18,7 +18,11 @@ public class Motor extends Thread implements IMotor {
 	public Motor(IAppControllerVToM controller) {
 		this.controller = controller;
 		api = new KideAppApi();
-
+		
+		scheduleInitialTasks();
+	}
+	
+	private void scheduleInitialTasks() {
 		ZonedDateTime now = ZonedDateTime.now();
 
 		var userSavedEvents = Mongo.INSTANCE.fetchUserSavedEvents();
@@ -34,7 +38,6 @@ public class Motor extends Thread implements IMotor {
 			.filter(e -> e.getDateActualFrom().compareTo(now) > 0)
 			.map(TaskConvertter::toEventStartingTask)
 			.forEach(Scheduler.INSTANCE::schedule);
-
 	}
 
 	@Override
