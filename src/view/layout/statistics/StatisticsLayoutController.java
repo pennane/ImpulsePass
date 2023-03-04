@@ -1,20 +1,11 @@
 package view.layout.statistics;
 
-import java.time.ZonedDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
-import database.EventsDataPoint;
-import database.Mongo;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
-import kide.KideAppEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import view.Gui;
 import view.ILayoutController;
 
@@ -22,50 +13,55 @@ public class StatisticsLayoutController implements ILayoutController {
 	Gui gui;
 
 	@FXML
+	ListView<KideChart> listViewCharts;
+
+	@FXML
 	LineChart<String, Integer> lineChart;
+
+	@FXML
+	Button buttonRefreshChart;
+
+	private KideChart currentChart;
 
 	@Override
 	public ILayoutController initialize(Gui gui) {
 		this.gui = gui;
+		System.out.println();
+		List<KideChart> charts = KideChart.createCharts();
 
-		drawNewChart(createEntries(), "title", "nimi");
+		lineChart.setCreateSymbols(false);
+		lineChart.setAnimated(false);
+
+		listViewCharts.getItems().addAll(charts);
+
+		listViewCharts.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue != null) {
+				drawChart(newValue);
+			} else {
+				listViewCharts.getSelectionModel().clearSelection();
+			}
+		});
+
+		listViewCharts.getSelectionModel().select(0);
 
 		return this;
 	}
 
-	public ZonedDateTime getClampedDate(ZonedDateTime date) {
-		return date.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-	}
+	public void drawChart(KideChart chart) {
+		currentChart = chart;
+		lineChart.getData().clear();
+		lineChart.setTitle(chart.getTitle());
 
-	public void drawNewChart(List<Entry<ZonedDateTime, Integer>> entries, String title, String name) {
-
-		lineChart.setTitle(title);
-		XYChart.Series<String, Integer> eventSeries = new Series<>();
-		eventSeries.setName(name);
-
-		for (Entry<ZonedDateTime, Integer> entry : entries) {
-			eventSeries.getData().add(new Data<String, Integer>(entry.getKey().toString(), entry.getValue()));
+		for (KideChartEntryList entryList : chart.getEntryLists()) {
+			lineChart.getData().add(entryList.getDataSeries());
 		}
 
-		lineChart.getData().add(eventSeries);
 	}
 
-	public List<Entry<ZonedDateTime, Integer>> createEntries() {
-		ZonedDateTime endDate = ZonedDateTime.now();
-		ZonedDateTime startDate = ZonedDateTime.now().minusDays(30);
-
-		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDate, endDate);
-		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
-
-		Map<ZonedDateTime, Integer> map = new HashMap<>();
-
-		for (KideAppEvent event : events) {
-			ZonedDateTime month = getClampedDate(event.getDateActualFrom());
-			map.put(month, map.getOrDefault(month, 0) + 1);
+	public void refreshChart() {
+		if (currentChart != null) {
+			currentChart.refresh();
 		}
-
-		return map.entrySet().stream().sorted((a, b) -> a.getKey().compareTo(b.getKey())).collect(Collectors.toList());
-
 	}
 
 }
