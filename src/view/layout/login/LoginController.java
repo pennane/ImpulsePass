@@ -1,5 +1,7 @@
 package view.layout.login;
 
+import database.LoginDatabase;
+import database.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,10 +21,13 @@ public class LoginController implements ILayoutController {
 	@FXML
 	private PasswordField passwordInput;
 
-	public void loginButtonAction(ActionEvent e) {
-
+	public void loginButtonAction(ActionEvent e) throws Exception {
+		LoginDatabase database = new LoginDatabase();
 		if (usernameInput.getText().isBlank() == false && passwordInput.getText().isBlank() == false) {
-			loginMessage.setText("Login clicked");
+			User u = new User(usernameInput.getText(), passwordInput.getText());
+			if (database.validate(u)) {
+				loginMessage.setText("login ok");
+			}
 		} else {
 			loginMessage.setText("Insert username and password");
 		}
