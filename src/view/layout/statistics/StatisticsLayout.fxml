@@ -3,9 +3,11 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -26,10 +28,15 @@
             </LineChart>
          </center>
          <left>
-            <VBox>
+            <VBox onMouseClicked="#refreshChart">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose chart" />
                   <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" />
+                  <HBox fx:id="buttonRefreshChartbuttonRefreshChart" alignment="CENTER">
+                     <children>
+                        <Button fx:id="buttonRefreshChart" mnemonicParsing="false" text="Refresh chart" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </left>

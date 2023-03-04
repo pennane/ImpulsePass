@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.bson.Document;
-import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
@@ -105,7 +104,17 @@ public enum Mongo {
 		eventsCollection.find(filter).into(results);
 
 		return results;
+	}
 
+	/**
+	 * Fetch everything with only projected fields
+	 */
+	public List<EventsDataPoint> fetchAllProjectedDataPoints(Bson projection) {
+		List<EventsDataPoint> results = new ArrayList<>();
+
+		eventsCollection.find().projection(projection).into(results);
+
+		return results;
 	}
 
 	public Optional<EventsDataPoint> fetchLatest() {

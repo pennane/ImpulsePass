@@ -1,19 +1,13 @@
 package view.layout.statistics;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import view.Gui;
 import view.ILayoutController;
-import view.layout.statistics.datastrategy.CurrentEventStartingDays;
-import view.layout.statistics.datastrategy.PublishedEventCountsHistory;
 
 public class StatisticsLayoutController implements ILayoutController {
 	Gui gui;
@@ -24,15 +18,16 @@ public class StatisticsLayoutController implements ILayoutController {
 	@FXML
 	LineChart<String, Integer> lineChart;
 
+	@FXML
+	Button buttonRefreshChart;
+
+	private KideChart currentChart;
+
 	@Override
 	public ILayoutController initialize(Gui gui) {
 		this.gui = gui;
 		System.out.println();
-		List<KideChart> charts = new ArrayList<>();
-
-		charts.add(new KideChart("Nykyhetken tapahtumapäivät", "tapahtumien määrä", new CurrentEventStartingDays()));
-		charts.add(
-				new KideChart("tapahtumat / kuukausi", "tapahtumien enimmäismäärä", new PublishedEventCountsHistory()));
+		List<KideChart> charts = KideChart.createCharts();
 
 		lineChart.setCreateSymbols(false);
 		lineChart.setAnimated(false);
@@ -53,16 +48,20 @@ public class StatisticsLayoutController implements ILayoutController {
 	}
 
 	public void drawChart(KideChart chart) {
+		currentChart = chart;
 		lineChart.getData().clear();
 		lineChart.setTitle(chart.getTitle());
 
-		XYChart.Series<String, Integer> eventSeries = new Series<>();
+		for (KideChartEntryList entryList : chart.getEntryLists()) {
+			lineChart.getData().add(entryList.getDataSeries());
+		}
 
-		eventSeries.setName(chart.getName());
-		eventSeries.getData().addAll(chart.getEntries().stream()
-				.map(e -> new Data<String, Integer>(e.getKey().toString(), e.getValue())).collect(Collectors.toList()));
+	}
 
-		lineChart.getData().add(eventSeries);
+	public void refreshChart() {
+		if (currentChart != null) {
+			currentChart.refresh();
+		}
 	}
 
 }

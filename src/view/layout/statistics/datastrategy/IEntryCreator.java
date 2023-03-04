@@ -4,6 +4,6 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map.Entry;
 
-public interface IChartEntriesStrategy {
+public interface IEntryCreator {
 	public List<Entry<ZonedDateTime, Integer>> getEntries();
 }

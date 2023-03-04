@@ -1,53 +1,70 @@
 package view.layout.statistics;
 
-import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
-import view.layout.statistics.datastrategy.IChartEntriesStrategy;
+import view.layout.statistics.datastrategy.CountsByDateActualFrom;
+import view.layout.statistics.datastrategy.CountsByDateCreated;
+import view.layout.statistics.datastrategy.CountsByDateSalesFrom;
+import view.layout.statistics.datastrategy.DateUtil;
 
-public class KideChart implements IChartEntriesStrategy {
-	String name;
+public class KideChart {
 	String title;
-	IChartEntriesStrategy dataStrategy;
-	List<Entry<ZonedDateTime, Integer>> entries;
+	List<KideChartEntryList> entryLists;
 
-	public KideChart(String name, String title, IChartEntriesStrategy dataStrategy) {
-		this.name = name;
+	public KideChart(String title) {
+		this.entryLists = new ArrayList<>();
 		this.title = title;
-		this.dataStrategy = dataStrategy;
 	}
 
-	@Override
-	public String toString() {
-		return name;
+	public KideChart addEntryList(KideChartEntryList entryList) {
+		entryLists.add(entryList);
+		return this;
 	}
 
-	/**
-	 * Make sure entries are created only once
-	 */
-	@Override
-	public List<Entry<ZonedDateTime, Integer>> getEntries() {
-		if (entries == null) {
-			entries = dataStrategy.getEntries();
-		}
-		return entries;
+	public List<KideChartEntryList> getEntryLists() {
+		return entryLists;
 	}
 
-	public static ZonedDateTime clampToStartOfMonth(ZonedDateTime date) {
-		return date.withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-	}
-
-	public static ZonedDateTime clampToStartOfDay(ZonedDateTime date) {
-		return date.withHour(0).withMinute(0).withSecond(0).withNano(0);
-	}
-
-	public String getName() {
-		return name;
+	public void refresh() {
+		entryLists.forEach(KideChartEntryList::refresh);
 	}
 
 	public String getTitle() {
 		return title;
+	}
+
+	@Override
+	public String toString() {
+		return title;
+	}
+
+	public static List<KideChart> createCharts() {
+		List<KideChart> charts = new ArrayList<>();
+		KideChartEntryList dateCreatedByWeek = new KideChartEntryList("Events created by week",
+				new CountsByDateCreated(DateUtil::toStartOfWeek));
+		KideChartEntryList dateActualFromByWeek = new KideChartEntryList("Events happening by week",
+				new CountsByDateActualFrom(DateUtil::toStartOfWeek));
+		KideChartEntryList dateSalesFromByWeek = new KideChartEntryList("Event sales by week",
+				new CountsByDateSalesFrom(DateUtil::toStartOfWeek));
+
+		KideChart datesByWeek = new KideChart("Dates by week").addEntryList(dateCreatedByWeek)
+				.addEntryList(dateActualFromByWeek).addEntryList(dateSalesFromByWeek);
+
+		KideChartEntryList dateCreatedByMonth = new KideChartEntryList("Events created by month",
+				new CountsByDateCreated(DateUtil::toStartOfMonth));
+		KideChartEntryList dateActualFromByMonth = new KideChartEntryList("Events happening by month",
+				new CountsByDateActualFrom(DateUtil::toStartOfMonth));
+		KideChartEntryList dateSalesFromByMonth = new KideChartEntryList("Event sales by month",
+				new CountsByDateSalesFrom(DateUtil::toStartOfMonth));
+
+		KideChart datesByMonth = new KideChart("Dates by month").addEntryList(dateCreatedByMonth)
+				.addEntryList(dateActualFromByMonth).addEntryList(dateSalesFromByMonth);
+
+		charts.add(datesByWeek);
+		charts.add(datesByMonth);
+
+		return charts;
 	}
 
 }
