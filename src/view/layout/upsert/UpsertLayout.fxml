@@ -44,10 +44,10 @@
                   <ListView fx:id="listDataPoints" prefHeight="150.0" prefWidth="300.0" />
                   <HBox alignment="BASELINE_LEFT" spacing="3.0">
                      <children>
-                        <ToggleButton mnemonicParsing="false" text="available" />
-                        <ToggleButton mnemonicParsing="false" text="upcoming" />
-                        <ToggleButton mnemonicParsing="false" text="sales ongoing" />
-                        <ToggleButton mnemonicParsing="false" text="sales ended" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="available" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="upcoming" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="sales ongoing" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="sales ended" />
                      </children>
                   </HBox>
                   <ListView fx:id="listEvents" prefHeight="200.0" prefWidth="300.0" />
