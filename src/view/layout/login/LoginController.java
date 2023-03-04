@@ -20,6 +20,8 @@ public class LoginController implements ILayoutController {
 	private TextField usernameInput;
 	@FXML
 	private PasswordField passwordInput;
+	@FXML
+	private Button registerButton;
 
 	public void loginButtonAction(ActionEvent e) throws Exception {
 		LoginDatabase database = new LoginDatabase();
@@ -31,6 +33,10 @@ public class LoginController implements ILayoutController {
 		} else {
 			loginMessage.setText("Insert username and password");
 		}
+	}
+
+	public void registerButtonAction(ActionEvent e) {
+		loginMessage.setText("Registerbutton");
 	}
 
 	@Override
