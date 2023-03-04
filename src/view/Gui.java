@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import kide.KideAppEvent;
 import model.KideAppEventDetails;
@@ -23,6 +24,8 @@ public class Gui extends Application implements IGui {
 
 	BorderPane layoutBase;
 	BaseLayoutController layoutBaseController;
+
+	HBox viewContainer;
 
 	AnchorPane statisticsLayout;
 	ILayoutController statisticsLayoutController;
@@ -43,6 +46,8 @@ public class Gui extends Application implements IGui {
 		layoutBase = (BorderPane) loader.load();
 		layoutBaseController = loader.getController();
 		layoutBaseController.initialize(this);
+
+		viewContainer = (HBox) layoutBase.getCenter();
 
 		loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("layout/statistics/StatisticsLayout.fxml"));
@@ -77,15 +82,18 @@ public class Gui extends Application implements IGui {
 	}
 
 	public void showUpsertLayout() {
-		this.layoutBase.setCenter(upsertLayout);
+		viewContainer.getChildren().clear();
+		viewContainer.getChildren().add(upsertLayout);
 	}
 
 	public void showStatisticsLayout() {
-		this.layoutBase.setCenter(statisticsLayout);
+		viewContainer.getChildren().clear();
+		viewContainer.getChildren().add(statisticsLayout);
 	}
 
 	public void showNotificationLayout() {
-		this.layoutBase.setCenter(notificationLayout);
+		viewContainer.getChildren().clear();
+		viewContainer.getChildren().add(notificationLayout);
 	}
 
 	public NotificationLayoutController getNotificationLayoutController() {

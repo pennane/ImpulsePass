@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -11,14 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
+<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
-         <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="some top bar" BorderPane.alignment="CENTER" />
-         </top>
          <center>
-            <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
+            <LineChart fx:id="lineChart" title="obunga" BorderPane.alignment="CENTER">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -30,11 +28,17 @@
          <left>
             <VBox onMouseClicked="#refreshChart">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose chart" />
-                  <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" />
-                  <HBox fx:id="buttonRefreshChartbuttonRefreshChart" alignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Choose chart" />
+                  <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" style="-fx-fill: #ffffff;" />
+                  <HBox fx:id="buttonRefreshChartbuttonRefreshChart" alignment="CENTER" style="-fx-fill: #ffffff;">
                      <children>
-                        <Button fx:id="buttonRefreshChart" mnemonicParsing="false" text="Refresh chart" />
+                        <Button fx:id="buttonRefreshChart" mnemonicParsing="false" style="-fx-padding: 4px;" text="Refresh chart">
+                           <padding>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </HBox.margin></Button>
                      </children>
                   </HBox>
                </children>

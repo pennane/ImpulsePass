@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
+<BorderPane id="projectRoot" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
    <top>
       <HBox alignment="CENTER" prefHeight="60.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,4 +26,7 @@
          </children>
       </HBox>
    </top>
+   <center>
+      <HBox fx:id="viewContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>

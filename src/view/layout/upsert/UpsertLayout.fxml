@@ -1,40 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="582.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
+<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
 	<children>
-		<Button fx:id="buttonFetchEvents" disable="true" mnemonicParsing="false" onMouseClicked="#handleFetchEvents" text="Initializing..." />
-      <Button fx:id="buttonShowResults" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#showEventsDataPoints" text="Show database contents" />
-      <ListView fx:id="listDataPoints" layoutX="14.0" layoutY="138.0" prefHeight="204.0" prefWidth="297.0" />
-      <ListView fx:id="listEvents" layoutX="14.0" layoutY="350.0" prefHeight="204.0" prefWidth="297.0" />
-      <DatePicker fx:id="pickerStartDate" layoutX="14.0" layoutY="48.0" prefHeight="18.0" prefWidth="100.0" />
-      <DatePicker fx:id="pickerEndDate" layoutX="123.0" layoutY="48.0" prefHeight="18.0" prefWidth="100.0" />
-      <Text layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start date" />
-      <Text layoutX="123.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End date" />
-      <ImageView fx:id="imgViewLogo" fitHeight="210.0" fitWidth="377.0" layoutX="385.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox fx:id="infoLayoutBox" layoutX="374.0" layoutY="242.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10;" visible="false">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="80.0" prefWidth="410.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Text fx:id="textEventName" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="EventName" textAlignment="CENTER" wrappingWidth="400.0" />
-                  <Text fx:id="textCompanyName" fill="#686565" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22;" text="CompanyName" textAlignment="CENTER" wrappingWidth="400.0" />
+            		<Button fx:id="buttonFetchEvents" disable="true" mnemonicParsing="false" onMouseClicked="#handleFetchEvents" text="Initializing...">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Button>
+                  <HBox prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox prefWidth="100.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Start date" />
+                              <DatePicker fx:id="pickerStartDate" prefHeight="18.0" prefWidth="100.0" />
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="100.0" HBox.hgrow="NEVER">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="End date" />
+                              <DatePicker fx:id="pickerEndDate" prefHeight="18.0" prefWidth="100.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Button fx:id="buttonShowResults" mnemonicParsing="false" onAction="#showEventsDataPoints" text="Show database contents">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Button>
+                  <ListView fx:id="listDataPoints" prefHeight="150.0" prefWidth="300.0" />
+                  <ListView fx:id="listEvents" prefHeight="200.0" prefWidth="300.0" />
                </children>
             </VBox>
-            <VBox prefHeight="106.0" prefWidth="410.0" style="-fx-alignment: center;">
+            <VBox fx:id="infoLayoutBox" alignment="TOP_CENTER" styleClass="eventInformation" visible="false" HBox.hgrow="SOMETIMES">
                <children>
-                  <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilTicketSales" textAlignment="CENTER" wrappingWidth="400.0" />
-                  <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilEventStart" textAlignment="CENTER" wrappingWidth="400.0" />
-                  <Button fx:id="buttonSaveEvent" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveEvent" prefHeight="25.0" prefWidth="135.0" text="Save to my events" textAlignment="CENTER" />
+                  <ImageView fx:id="imgViewLogo" fitHeight="210.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="410.0">
+                     <children>
+                        <Text fx:id="textEventName" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="EventName" textAlignment="CENTER" />
+                        <Text fx:id="textCompanyName" fill="#686565" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22;" text="CompanyName" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="106.0" prefWidth="410.0" spacing="5.0" style="-fx-alignment: center;">
+                     <children>
+                        <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilTicketSales" textAlignment="CENTER" wrappingWidth="400.0" />
+                        <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilEventStart" textAlignment="CENTER" wrappingWidth="400.0" />
+                        <Button fx:id="buttonSaveEvent" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveEvent" prefHeight="25.0" prefWidth="135.0" text="Save to my events" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </VBox>
          </children>
-      </VBox>
+      </HBox>
 	</children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </AnchorPane>
