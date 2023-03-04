@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import config.Config;
+
 public class LoginDatabase {
 
 	public LoginDatabase() {
@@ -17,15 +19,15 @@ public class LoginDatabase {
 	private Statement statement = null;
 	private PreparedStatement preparedStatement = null;
 	private ResultSet rS = null;
-	private Secrets secrets = new Secrets();
 
 	public void writeToDatabase(User u) throws Exception {
 		try {
 			// This will load the MySQL driver, each DB has its own driver
 			// Class.forName("com.mysql.jdbc.Driver");
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName(Config.get("SQL_DATABASE_DRIVER"));
 			// Setup the connection with the DB
-			connect = DriverManager.getConnection(secrets.DatabaseAdress, secrets.username, secrets.password);
+			connect = DriverManager.getConnection(Config.get("SQL_DATABASE_ADDRESS"),
+					Config.get("SQL_DATABASE_USERNAME"), Config.get("SQL_DATABASE_PASSWORD"));
 
 			preparedStatement = connect.prepareStatement("insert into  Users values (default, ?,?)");
 
@@ -45,9 +47,10 @@ public class LoginDatabase {
 	public User[] getAllFromDatabase() throws Exception {
 		try {
 			// This will load the Mariadb driver, each DB has its own driver
-			Class.forName("org.mariadb.jdbc.Driver");
+			Class.forName(Config.get("SQL_DATABASE_DRIVER"));
 			// Setup the connection with the DB
-			connect = DriverManager.getConnection(secrets.DatabaseAdress, secrets.username, secrets.password);
+			connect = DriverManager.getConnection(Config.get("SQL_DATABASE_ADDRESS"),
+					Config.get("SQL_DATABASE_USERNAME"), Config.get("SQL_DATABASE_PASSWORD"));
 
 			// Statements allow to issue SQL queries to the database
 			statement = connect.createStatement();
@@ -73,14 +76,27 @@ public class LoginDatabase {
 	public Boolean validate(User u) throws Exception {
 
 		User[] dataArray = getAllFromDatabase();
+		var username = u.getUsername();
+		var password = u.getPassword();
 		for (int i = 0; i < dataArray.length; i++) {
-			if (dataArray[i].getUsername() == u.getUsername() && dataArray[i].getPassword() == u.getPassword()) {
+			if (dataArray[i].getUsername().equals(username) && dataArray[i].getPassword().equals(password)) {
 				return true;
-			} else {
-				return false;
 			}
 		}
-		return null;
+		return false;
+
+	}
+
+	public Boolean validateNewUser(User u) throws Exception {
+
+		User[] dataArray = getAllFromDatabase();
+		var username = u.getUsername();
+		for (int i = 0; i < dataArray.length; i++) {
+			if (dataArray[i].getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
 
 	}
 

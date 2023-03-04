@@ -1,5 +1,8 @@
 package view.layout.register;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import database.LoginDatabase;
 import database.User;
 import javafx.event.ActionEvent;
@@ -19,11 +22,33 @@ public class RegisterController {
 		LoginDatabase database = new LoginDatabase();
 
 		if (usernameInput.getText().isBlank() == false && passwordInput.getText().isBlank() == false) {
-			loginMessage.setText("Registerbutton");
 			User u = new User(usernameInput.getText(), passwordInput.getText());
-			database.writeToDatabase(u);
+			if (database.validateNewUser(u)) {
+				loginMessage.setText("Username taken!");
+			}
+
+			else if (isValidPassword(u.getPassword()) && isValidUsername(u.getUsername()) != true) {
+				loginMessage.setText("Registerbutton");
+				database.writeToDatabase(u);
+			} else {
+				loginMessage.setText("Insert valid password or username");
+			}
 		} else {
 			loginMessage.setText("Insert username and password");
 		}
+	}
+
+	public static boolean isValidPassword(String password) {
+		String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(password);
+		return matcher.matches();
+	}
+
+	public static boolean isValidUsername(String u) {
+		String regex = "[^a-z0-9 ]";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(u);
+		return matcher.matches();
 	}
 }
