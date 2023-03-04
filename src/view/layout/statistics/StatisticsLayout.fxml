@@ -26,7 +26,7 @@
             </LineChart>
          </center>
          <left>
-            <VBox onMouseClicked="#refreshChart">
+            <VBox onMouseClicked="#refreshChart" spacing="10.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Choose chart" />
                   <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" style="-fx-fill: #ffffff;" />
@@ -42,6 +42,9 @@
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets top="11.0" />
+               </padding>
             </VBox>
          </left>
       </BorderPane>
