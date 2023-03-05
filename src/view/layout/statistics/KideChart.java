@@ -3,6 +3,7 @@ package view.layout.statistics;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.layout.statistics.datastrategy.ByMedianPrice;
 import view.layout.statistics.datastrategy.CountsByDateActualFrom;
 import view.layout.statistics.datastrategy.CountsByDateCreated;
 import view.layout.statistics.datastrategy.CountsByDateSalesFrom;
@@ -71,9 +72,19 @@ public class KideChart {
 		KideChart datesByDay = new KideChart("Dates by day").addEntryList(dateCreatedByDay)
 				.addEntryList(dateActualFromByDay).addEntryList(dateSalesFromByDay);
 
+			KideChartEntryList medianPriceByWeek = new KideChartEntryList("Euros",
+				new ByMedianPrice(DateUtil::toStartOfWeek));
+
+		KideChart medianEventPrice = new KideChart("Median event price by week").addEntryList(medianPriceByWeek);
+
+
+
 		charts.add(datesByWeek);
 		charts.add(datesByMonth);
 		charts.add(datesByDay);
+			charts.add(medianEventPrice);
+		
+
 
 		return charts;
 	}
