@@ -1,21 +1,18 @@
 package model.kide;
-public class KideAppEventPrice
-{
-    private String eur;
 
-    public String getEur ()
-    {
-        return eur;
-    }
+public class KideAppEventPrice {
+	private String eur;
 
-    public void setEur (String eur)
-    {
-        this.eur = eur;
-    }
+	public String getEur() {
+		return eur;
+	}
 
-    @Override
-    public String toString()
-    {
-        return "ClassPojo [eur = "+eur+"]";
-    }
+	public void setEur(String eur) {
+		this.eur = eur;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassPojo [eur = " + eur + "]";
+	}
 }
