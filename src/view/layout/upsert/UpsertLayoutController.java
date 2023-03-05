@@ -3,12 +3,16 @@ package view.layout.upsert;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import config.Config;
 import database.EventsDataPoint;
 import database.Mongo;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -50,8 +54,23 @@ public class UpsertLayoutController implements ILayoutController {
 	@FXML
 	private VBox infoLayoutBox;
 
+	private Predicate<KideAppEvent> predicate;
+	private FilteredList<KideAppEvent> kideAppEvents;
+
+	private Boolean availableFilter;
+	private Boolean upcomingFilter;
+	private Boolean salesOngoingFilter;
+	private Boolean salesEndedFilter;
+
 	@Override
 	public ILayoutController initialize(Gui gui) {
+		availableFilter = false;
+		upcomingFilter = false;
+		salesOngoingFilter = false;
+		salesEndedFilter = false;
+
+		predicate = createPredicate();
+
 		buttonFetchEvents.setText("Fetch and insert events from the web");
 		buttonFetchEvents.setDisable(false);
 		this.gui = gui;
@@ -73,7 +92,7 @@ public class UpsertLayoutController implements ILayoutController {
 
 		var now = LocalDate.now();
 		pickerEndDate.setValue(now.plusDays(1));
-		pickerStartDate.setValue(now.minusDays(7));
+		pickerStartDate.setValue(now);
 		showEventsDataPoints();
 
 		return this;
@@ -96,8 +115,9 @@ public class UpsertLayoutController implements ILayoutController {
 	}
 
 	public void showEventsList(EventsDataPoint e) {
+		kideAppEvents = new FilteredList<KideAppEvent>(FXCollections.observableArrayList(e.getEvents()), predicate);
 		listEvents.getItems().clear();
-		listEvents.getItems().addAll(e.getEvents());
+		listEvents.getItems().addAll(kideAppEvents);
 	}
 
 	public void showEventsDataPoints() {
@@ -110,9 +130,7 @@ public class UpsertLayoutController implements ILayoutController {
 		ZonedDateTime endDate = pickerEndDate.getValue().plusDays(1).atStartOfDay(ZoneId.systemDefault());
 		ZonedDateTime startDate = pickerStartDate.getValue().atStartOfDay(ZoneId.systemDefault());
 
-		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDate, endDate);
-		listDataPoints.getItems().addAll(eventDataPoints);
-
+		listDataPoints.getItems().addAll(Mongo.INSTANCE.fetchDataPoints(startDate, endDate));
 	}
 
 	public void showEventInfo(KideAppEvent e) {
@@ -150,4 +168,66 @@ public class UpsertLayoutController implements ILayoutController {
 			gui.getNotificationLayoutController().insertEventToList(listEvents.getSelectionModel().getSelectedItem());
 		}
 	}
+
+	public void toggleAvailableFilter() {
+		availableFilter = !availableFilter;
+		updatePredicate();
+	}
+
+	public void toggleUpcomingFilter() {
+		upcomingFilter = !upcomingFilter;
+		updatePredicate();
+	}
+
+	public void toggleSalesOngoingFilter() {
+		salesOngoingFilter = !salesOngoingFilter;
+		updatePredicate();
+	}
+
+	public void togglSalesEndedFilter() {
+		salesEndedFilter = !salesEndedFilter;
+		updatePredicate();
+	}
+
+	public Predicate<KideAppEvent> createPredicate() {
+		List<Predicate<KideAppEvent>> predicates = new ArrayList<>();
+
+		if (availableFilter) {
+			predicates.add(e -> e.getAvailability() > 0);
+		}
+		if (upcomingFilter) {
+			predicates.add(e -> {
+				var now = ZonedDateTime.now();
+				return now.compareTo(e.getDateSalesFrom()) < 0;
+			});
+		}
+		if (salesOngoingFilter) {
+			predicates.add(e -> {
+				if (e.getSalesEnded()) {
+					return false;
+				}
+				var now = ZonedDateTime.now();
+				return now.compareTo(e.getDateSalesFrom()) > 0;
+			});
+		}
+		if (salesEndedFilter) {
+			predicates.add(e -> e.getSalesEnded());
+		}
+
+
+		return predicates.stream().reduce(x -> true, Predicate::and);
+	}
+
+	public void updatePredicate() {
+		var predicate = createPredicate();
+		if (kideAppEvents != null) {
+			kideAppEvents.setPredicate(predicate);
+			listEvents.getItems().clear();
+			listEvents.getItems().addAll(kideAppEvents);
+		}
+
+		this.predicate = predicate;
+
+	}
+
 }
