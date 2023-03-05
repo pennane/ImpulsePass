@@ -24,7 +24,7 @@
                <children>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <ListView fx:id="listViewEvents" minWidth="300.0" prefWidth="380.0" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="listViewEvents" minWidth="300.0" prefWidth="400.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox fx:id="infoLayoutBox" visible="false" HBox.hgrow="SOMETIMES">
@@ -51,6 +51,7 @@
                            <children>
                               <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="white-text" text="TimeUntilTicketSales" />
                               <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="white-text" text="TimeUntilEventStart" />
+                              <Button fx:id="btnOpenEvent" mnemonicParsing="false" prefHeight="27.0" prefWidth="136.0" text="Open event page" />
                            </children>
                         </VBox>
                      </children>

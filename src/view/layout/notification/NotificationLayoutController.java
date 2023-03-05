@@ -1,11 +1,15 @@
 package view.layout.notification;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
 import config.Config;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -39,6 +43,8 @@ public class NotificationLayoutController implements ILayoutController {
 	private VBox infoLayoutBox;
 	@FXML
 	private Button btnRefresh;
+	@FXML
+	private Button btnOpenEvent;
 
 	@Override
 	public ILayoutController initialize(Gui gui) {
@@ -52,10 +58,22 @@ public class NotificationLayoutController implements ILayoutController {
 				listViewEvents.getSelectionModel().clearSelection();
 			}
 		});
+		btnOpenEvent.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				try {
+					Desktop.getDesktop().browse(new URI(
+							"https://kide.app/events/" + listViewEvents.getSelectionModel().getSelectedItem().getId()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 		return this;
 	}
 
 	public void showEventsList() {
+		infoLayoutBox.setVisible(false);
 		List<KideAppEvent> events = Mongo.INSTANCE.fetchUserSavedEvents();
 		listViewEvents.getItems().clear();
 		listViewEvents.getItems().addAll(events);
@@ -111,6 +129,9 @@ public class NotificationLayoutController implements ILayoutController {
 		textCompanyName.setText(null);
 		textSaleStart.setText(null);
 		textEventStart.setText(null);
+	}
+
+	public void openEventWebsite() {
 	}
 
 	public void getEventInfo(KideAppEvent e) {
