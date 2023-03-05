@@ -72,19 +72,15 @@ public class KideChart {
 		KideChart datesByDay = new KideChart("Dates by day").addEntryList(dateCreatedByDay)
 				.addEntryList(dateActualFromByDay).addEntryList(dateSalesFromByDay);
 
-			KideChartEntryList medianPriceByWeek = new KideChartEntryList("Euros",
+		KideChartEntryList medianPriceByWeek = new KideChartEntryList("Euros",
 				new ByMedianPrice(DateUtil::toStartOfWeek));
 
 		KideChart medianEventPrice = new KideChart("Median event price by week").addEntryList(medianPriceByWeek);
 
-
-
 		charts.add(datesByWeek);
 		charts.add(datesByMonth);
 		charts.add(datesByDay);
-			charts.add(medianEventPrice);
-		
-
+		charts.add(medianEventPrice);
 
 		return charts;
 	}
