@@ -1,1 +1,61 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.list-view .scroll-bar:horizontal .increment-arrow,
+.list-view .scroll-bar:horizontal .decrement-arrow,
+.list-view .scroll-bar:horizontal .increment-button,
+.list-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}
+
+#projectRoot, .projectRoot {
+	-fx-background-color: #5e35b1;
+	 -fx-text-fill: #ffffff;
+}
+
+.eventInformation {
+	-fx-background-color: #ffffff;
+	 -fx-text-fill: #000000;
+	 -fx-spacing: 10;
+}
+
+.button {
+	-fx-background-color: transparent;
+	-fx-border-color: #ffffff;
+	-fx-border-width: 1px;
+	-fx-border-radius: 6px;
+	-fx-text-fill: #ffffff;
+	-fx-cursor: hand;
+	-fx-padding: 4px;
+	-fx-margin: 4px;
+}
+
+.button:hover {
+	-fx-background-color:rgba(255, 255, 255, 0.1);
+}
+
+.eventInformation .button {
+	-fx-border-color:  #5e35b1;
+	-fx-border-radius: 6px;
+	-fx-text-fill:  #5e35b1;
+}
+
+.eventInformation .button:hover {
+		-fx-background-color:rgba(0, 0, 0, 0.1)
+	
+}
+
+.chart-title {
+  -fx-text-fill: #ffffff;
+}
+ 
+.axis-label {
+  -fx-text-fill: #ffffff;
+}
+
+.axis {
+	-fx-tick-label-fill: #ffffff;
+}
+
+.white-text {
+	 -fx-text-fill: #ffffff;
+	 -fx-fill: #ffffff;
+}
+

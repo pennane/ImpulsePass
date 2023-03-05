@@ -1,5 +1,6 @@
 package view.layout.upsert;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -69,6 +70,12 @@ public class UpsertLayoutController implements ILayoutController {
 				listEvents.getSelectionModel().clearSelection();
 			}
 		});
+
+		var now = LocalDate.now();
+		pickerEndDate.setValue(now.plusDays(1));
+		pickerStartDate.setValue(now.minusDays(7));
+		showEventsDataPoints();
+
 		return this;
 
 	}
@@ -104,7 +111,6 @@ public class UpsertLayoutController implements ILayoutController {
 		ZonedDateTime startDate = pickerStartDate.getValue().atStartOfDay(ZoneId.systemDefault());
 
 		List<EventsDataPoint> eventDataPoints = Mongo.INSTANCE.fetchDataPoints(startDate, endDate);
-		List<KideAppEvent> events = eventDataPoints.get(0).getEvents();
 		listDataPoints.getItems().addAll(eventDataPoints);
 
 	}

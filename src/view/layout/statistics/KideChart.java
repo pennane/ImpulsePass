@@ -41,21 +41,21 @@ public class KideChart {
 
 	public static List<KideChart> createCharts() {
 		List<KideChart> charts = new ArrayList<>();
-		KideChartEntryList dateCreatedByWeek = new KideChartEntryList("Events created by week",
+		KideChartEntryList dateCreatedByWeek = new KideChartEntryList("Events created",
 				new CountsByDateCreated(DateUtil::toStartOfWeek));
-		KideChartEntryList dateActualFromByWeek = new KideChartEntryList("Events happening by week",
+		KideChartEntryList dateActualFromByWeek = new KideChartEntryList("Events happening",
 				new CountsByDateActualFrom(DateUtil::toStartOfWeek));
-		KideChartEntryList dateSalesFromByWeek = new KideChartEntryList("Event sales by week",
+		KideChartEntryList dateSalesFromByWeek = new KideChartEntryList("Event sales",
 				new CountsByDateSalesFrom(DateUtil::toStartOfWeek));
 
 		KideChart datesByWeek = new KideChart("Dates by week").addEntryList(dateCreatedByWeek)
 				.addEntryList(dateActualFromByWeek).addEntryList(dateSalesFromByWeek);
 
-		KideChartEntryList dateCreatedByMonth = new KideChartEntryList("Events created by month",
+		KideChartEntryList dateCreatedByMonth = new KideChartEntryList("Events created",
 				new CountsByDateCreated(DateUtil::toStartOfMonth));
-		KideChartEntryList dateActualFromByMonth = new KideChartEntryList("Events happening by month",
+		KideChartEntryList dateActualFromByMonth = new KideChartEntryList("Events happening",
 				new CountsByDateActualFrom(DateUtil::toStartOfMonth));
-		KideChartEntryList dateSalesFromByMonth = new KideChartEntryList("Event sales by month",
+		KideChartEntryList dateSalesFromByMonth = new KideChartEntryList("Event sales",
 				new CountsByDateSalesFrom(DateUtil::toStartOfMonth));
 
 		KideChart datesByMonth = new KideChart("Dates by month").addEntryList(dateCreatedByMonth)
