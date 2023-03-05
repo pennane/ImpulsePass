@@ -27,7 +27,7 @@
                         <ListView fx:id="listViewEvents" minWidth="300.0" prefWidth="400.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
-                  <VBox fx:id="infoLayoutBox" HBox.hgrow="SOMETIMES">
+                  <VBox fx:id="infoLayoutBox" visible="false" HBox.hgrow="SOMETIMES">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="300.0" spacing="10.0">
                            <children>
