@@ -1,4 +1,4 @@
-package model;
+package model.kide;
 
 import java.time.ZonedDateTime;
 

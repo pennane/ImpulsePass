@@ -1,10 +1,7 @@
-package kide;
+package model.kide;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
-
-import model.EventPrice;
-import model.KideAppEventDetails;
 
 /*
  * 
@@ -52,9 +49,9 @@ public class KideAppEvent {
 
 	private Integer favoritedTimes;
 
-	private EventPrice minPrice;
+	private KideAppEventPrice minPrice;
 
-	private EventPrice maxPrice;
+	private KideAppEventPrice maxPrice;
 
 	private Boolean hasFreeInventoryItems;
 
@@ -245,19 +242,19 @@ public class KideAppEvent {
 		this.favoritedTimes = favoritedTimes;
 	}
 
-	public EventPrice getMinPrice() {
+	public KideAppEventPrice getMinPrice() {
 		return minPrice;
 	}
 
-	public void setMinPrice(EventPrice minPrice) {
+	public void setMinPrice(KideAppEventPrice minPrice) {
 		this.minPrice = minPrice;
 	}
 
-	public EventPrice getMaxPrice() {
+	public KideAppEventPrice getMaxPrice() {
 		return maxPrice;
 	}
 
-	public void setMaxPrice(EventPrice maxPrice) {
+	public void setMaxPrice(KideAppEventPrice maxPrice) {
 		this.maxPrice = maxPrice;
 	}
 

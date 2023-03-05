@@ -1,4 +1,4 @@
-package database;
+package model.database.mongo;
 
 import java.time.Instant;
 import java.time.ZoneId;

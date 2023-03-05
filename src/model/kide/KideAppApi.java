@@ -1,4 +1,4 @@
-package kide;
+package model.kide;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,9 +11,8 @@ import java.util.Optional;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import database.ProductAdapter;
 import model.CustomGson;
-import model.KideAppEventDetails;
+import model.database.mongo.ProductAdapter;
 
 public class KideAppApi {
 	public static final String API_BASE = "https://api.kide.app/api/";

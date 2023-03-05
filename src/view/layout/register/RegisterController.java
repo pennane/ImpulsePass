@@ -3,12 +3,12 @@ package view.layout.register;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import database.LoginDatabase;
-import database.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import model.database.sql.LoginDatabase;
+import model.database.sql.User;
 
 public class RegisterController {
 	@FXML

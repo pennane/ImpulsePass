@@ -1,4 +1,4 @@
-package database;
+package model.database.mongo;
 
 public class ProductAdapter<T> {
 	T product;

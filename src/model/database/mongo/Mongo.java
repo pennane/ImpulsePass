@@ -1,4 +1,4 @@
-package database;
+package model.database.mongo;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.gte;
@@ -28,7 +28,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 
 import config.Config;
-import kide.KideAppEvent;
+import model.kide.KideAppEvent;
 
 public enum Mongo {
 	INSTANCE;

@@ -1,13 +1,13 @@
 package view.layout.login;
 
-import database.LoginDatabase;
-import database.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.database.sql.LoginDatabase;
+import model.database.sql.User;
 import view.Gui;
 import view.ILayoutController;
 

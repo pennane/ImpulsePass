@@ -1,6 +1,6 @@
 package model.schedule;
 
-import kide.KideAppEvent;
+import model.kide.KideAppEvent;
 
 public class TaskConvertter {
 	public static Task toSalesStartingTask(KideAppEvent e) {

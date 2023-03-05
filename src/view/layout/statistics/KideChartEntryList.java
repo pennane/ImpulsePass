@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import database.EventsDataPoint;
 import javafx.scene.chart.XYChart;
-import kide.KideAppEvent;
+import model.database.mongo.EventsDataPoint;
+import model.kide.KideAppEvent;
 import view.layout.statistics.datastrategy.IDateClamper;
 import view.layout.statistics.datastrategy.IDateGetter;
 import view.layout.statistics.datastrategy.IEntryCreator;

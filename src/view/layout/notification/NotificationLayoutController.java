@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import config.Config;
-import database.Mongo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -14,9 +13,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import kide.KideAppEvent;
 import model.EventListCell;
-import model.KideAppEventDetails;
+import model.database.mongo.Mongo;
+import model.kide.KideAppEvent;
+import model.kide.KideAppEventDetails;
 import view.Gui;
 import view.ILayoutController;
 
