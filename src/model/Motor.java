@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import controller.IAppControllerVToM;
-import database.Mongo;
-import kide.KideAppApi;
-import kide.KideAppEvent;
+import model.database.mongo.Mongo;
+import model.kide.KideAppApi;
+import model.kide.KideAppEvent;
+import model.kide.KideAppEventDetails;
 import model.schedule.Scheduler;
 import model.schedule.TaskConvertter;
 

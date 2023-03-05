@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 import org.bson.conversions.Bson;
 
-import database.EventsDataPoint;
-import database.Mongo;
-import kide.KideAppEvent;
+import model.database.mongo.EventsDataPoint;
+import model.database.mongo.Mongo;
+import model.kide.KideAppEvent;
 import view.layout.statistics.KideChartEntryList;
 
 public class CountsByDateActualFrom implements IEntryCreator {

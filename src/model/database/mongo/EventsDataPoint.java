@@ -1,9 +1,9 @@
-package database;
+package model.database.mongo;
 
 import java.util.Date;
 import java.util.List;
 
-import kide.KideAppEvent;
+import model.kide.KideAppEvent;
 
 public class EventsDataPoint {
 	List<KideAppEvent> events;

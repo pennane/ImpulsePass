@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.application.Platform;
-import kide.KideAppEvent;
 import model.IMotor;
-import model.KideAppEventDetails;
 import model.Motor;
+import model.kide.KideAppEvent;
+import model.kide.KideAppEventDetails;
 import view.IGui;
 
 public class AppController implements IAppControllerMToV, IAppControllerVToM {

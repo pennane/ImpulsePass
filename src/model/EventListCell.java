@@ -1,6 +1,5 @@
 package model;
 
-import database.Mongo;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -9,7 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import kide.KideAppEvent;
+import model.database.mongo.Mongo;
+import model.kide.KideAppEvent;
 
 public class EventListCell extends ListCell<KideAppEvent> {
 	HBox hbox = new HBox();

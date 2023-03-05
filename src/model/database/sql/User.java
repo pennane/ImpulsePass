@@ -1,4 +1,4 @@
-package database;
+package model.database.sql;
 
 public class User {
 	private String username;

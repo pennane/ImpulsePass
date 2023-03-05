@@ -1,4 +1,4 @@
-package kide;
+package model.kide;
 
 import java.util.List;
 

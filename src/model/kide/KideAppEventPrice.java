@@ -1,5 +1,5 @@
-package model;
-public class EventPrice
+package model.kide;
+public class KideAppEventPrice
 {
     private String eur;
 

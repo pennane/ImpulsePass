@@ -9,8 +9,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import config.Config;
-import database.EventsDataPoint;
-import database.Mongo;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -21,7 +19,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import kide.KideAppEvent;
+import model.database.mongo.EventsDataPoint;
+import model.database.mongo.Mongo;
+import model.kide.KideAppEvent;
 import view.Gui;
 import view.ILayoutController;
 
@@ -213,7 +213,6 @@ public class UpsertLayoutController implements ILayoutController {
 		if (salesEndedFilter) {
 			predicates.add(e -> e.getSalesEnded());
 		}
-
 
 		return predicates.stream().reduce(x -> true, Predicate::and);
 	}
