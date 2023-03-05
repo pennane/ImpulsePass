@@ -33,9 +33,11 @@ import model.kide.KideAppEvent;
 public enum Mongo {
 	INSTANCE;
 
-	MongoDatabase database;
-	MongoCollection<EventsDataPoint> eventsCollection;
-	MongoCollection<KideAppEvent> userSavedCollection;
+	private MongoClient mongoClient;
+	private MongoDatabase database;
+
+	private MongoCollection<EventsDataPoint> eventsCollection;
+	private MongoCollection<KideAppEvent> userSavedCollection;
 
 	Mongo() {
 		/// AAAAAAAAAAAAAA :D
@@ -44,11 +46,19 @@ public enum Mongo {
 				fromProviders(new ZonedDateTimeCodecProvider(), PojoCodecProvider.builder().automatic(true).build()));
 		MongoClientSettings clientSettings = MongoClientSettings.builder().applyConnectionString(connectionString)
 				.codecRegistry(codecRegistry).build();
-		MongoClient mongoClient = MongoClients.create(clientSettings);
+		mongoClient = MongoClients.create(clientSettings);
 
-		database = mongoClient.getDatabase(Config.get("DB_NAME"));
+		useDatabase(Config.get("DB_NAME"));
+	}
+
+	private void registerCollections() {
 		eventsCollection = database.getCollection("events", EventsDataPoint.class);
 		userSavedCollection = database.getCollection("userSavedEvents", KideAppEvent.class);
+	}
+
+	private void useDatabase(String dbName) {
+		database = mongoClient.getDatabase(dbName);
+		registerCollections();
 	}
 
 	public void insertEvents(List<KideAppEvent> events) {
@@ -127,4 +137,19 @@ public enum Mongo {
 		return Optional.empty();
 	}
 
+	/**
+	 * FOR TESTING PURPOSES! DONT USE IN CLIENT CODE PLS :D
+	 * 
+	 * @throws Exception if mongo tries to use some other db than test db
+	 */
+	public void resetAndUseTestDatabase() throws Exception {
+		useDatabase("test");
+		if (database.getName() != "test") {
+			throw new Exception("Not using the test database");
+		}
+		eventsCollection.drop();
+		userSavedCollection.drop();
+		registerCollections();
+
+	}
 }
