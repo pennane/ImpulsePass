@@ -61,8 +61,19 @@ public class KideChart {
 		KideChart datesByMonth = new KideChart("Dates by month").addEntryList(dateCreatedByMonth)
 				.addEntryList(dateActualFromByMonth).addEntryList(dateSalesFromByMonth);
 
+		KideChartEntryList dateCreatedByDay = new KideChartEntryList("Events created",
+				new CountsByDateCreated(DateUtil::toStartOfDay));
+		KideChartEntryList dateActualFromByDay = new KideChartEntryList("Events happening",
+				new CountsByDateActualFrom(DateUtil::toStartOfDay));
+		KideChartEntryList dateSalesFromByDay = new KideChartEntryList("Event sales",
+				new CountsByDateSalesFrom(DateUtil::toStartOfDay));
+
+		KideChart datesByDay = new KideChart("Dates by day").addEntryList(dateCreatedByDay)
+				.addEntryList(dateActualFromByDay).addEntryList(dateSalesFromByDay);
+
 		charts.add(datesByWeek);
 		charts.add(datesByMonth);
+		charts.add(datesByDay);
 
 		return charts;
 	}
