@@ -9,11 +9,11 @@
 
 <BorderPane id="projectRoot" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
    <top>
-      <HBox prefHeight="60.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="60.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="92.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fitHeight="104.0" fitWidth="487.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
-                  <Image url="@../../../res/app_logo2.png" />
+                  <Image url="@../../../res/logo.png" />
                </image>
             </ImageView>
             <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="200.0">
