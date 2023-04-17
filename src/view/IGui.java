@@ -3,7 +3,6 @@ package view;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import controller.IAppControllerMToV;
 import model.kide.KideAppEvent;
@@ -16,7 +15,7 @@ public interface IGui {
 
 	IAppControllerMToV getController();
 
-	ResourceBundle getBundle();
+	String getIntl(String key);
 
 	void changeLocale(Locale locale);
 }

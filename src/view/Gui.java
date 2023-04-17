@@ -103,8 +103,8 @@ public class Gui extends Application implements IGui {
 	}
 
 	@Override
-	public ResourceBundle getBundle() {
-		return bundle;
+	public String getIntl(String key) {
+		return bundle.getString(key);
 	}
 
 	private void initalizeViews() {
