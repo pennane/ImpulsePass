@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.settings.SettingsLayoutController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="800.0">
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onMouseClicked="#handleSetFinnish" text="SUOMI" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleSetEnglish" text="ENGILS" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleSetFrench" text="FRANCE" />
+               </children>
+            </VBox>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

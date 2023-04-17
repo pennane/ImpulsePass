@@ -4,7 +4,7 @@ import view.Gui;
 import view.ILayoutController;
 
 public class BaseLayoutController implements ILayoutController {
-	Gui gui;
+	private Gui gui;
 
 	@Override
 	public ILayoutController initialize(Gui gui) {
@@ -23,4 +23,9 @@ public class BaseLayoutController implements ILayoutController {
 	public void handleShowStatisticsLayout() {
 		gui.showStatisticsLayout();
 	}
+
+	public void handleShowSettingsLayout() {
+		gui.showSettingsLayout();
+	}
+
 }
