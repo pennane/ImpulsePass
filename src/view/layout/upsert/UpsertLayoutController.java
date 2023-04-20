@@ -1,7 +1,5 @@
 package view.layout.upsert;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,15 +29,9 @@ public class UpsertLayoutController implements ILayoutController {
 	@FXML
 	private Button buttonSaveEvent;
 	@FXML
-	private Button buttonShowResults;
-	@FXML
 	private ListView<EventsDataPoint> listDataPoints;
 	@FXML
 	private ListView<KideAppEvent> listEvents;
-	@FXML
-	private DatePicker pickerEndDate;
-	@FXML
-	private DatePicker pickerStartDate;
 	@FXML
 	private ImageView imgViewLogo;
 	@FXML
@@ -70,17 +61,9 @@ public class UpsertLayoutController implements ILayoutController {
 		salesEndedFilter = false;
 
 		predicate = createPredicate();
-
-		buttonFetchEvents.setText("Fetch and insert events from the web");
+		showEventsList(Mongo.INSTANCE.fetchLatest().get().getEvents());
 		buttonFetchEvents.setDisable(false);
 		this.gui = gui;
-		listDataPoints.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue != null) {
-				showEventsList(newValue);
-			} else {
-				listDataPoints.getSelectionModel().clearSelection();
-			}
-		});
 
 		listEvents.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			if (newValue != null) {
@@ -90,17 +73,11 @@ public class UpsertLayoutController implements ILayoutController {
 			}
 		});
 
-		var now = LocalDate.now();
-		pickerEndDate.setValue(now.plusDays(1));
-		pickerStartDate.setValue(now);
-		showEventsDataPoints();
-
 		return this;
 
 	}
 
 	public void handleFetchEvents() {
-		buttonFetchEvents.setText("fetching...");
 		buttonFetchEvents.setDisable(true);
 		gui.getController().requestEvents();
 	}
@@ -108,29 +85,14 @@ public class UpsertLayoutController implements ILayoutController {
 	public void receiveFetchedEvents(Optional<List<KideAppEvent>> events) {
 		buttonFetchEvents.setDisable(false);
 		if (events.isPresent()) {
-			buttonFetchEvents.setText(events.get().size() + " tapahtumaa viety kantaan");
-		} else {
-			buttonFetchEvents.setText(events.get().size() + " epäonnistui");
+			showEventsList(events.get());
 		}
 	}
 
-	public void showEventsList(EventsDataPoint e) {
-		kideAppEvents = new FilteredList<KideAppEvent>(FXCollections.observableArrayList(e.getEvents()), predicate);
+	public void showEventsList(List<KideAppEvent> e) {
+		kideAppEvents = new FilteredList<KideAppEvent>(FXCollections.observableArrayList(e), predicate);
 		listEvents.getItems().clear();
 		listEvents.getItems().addAll(kideAppEvents);
-	}
-
-	public void showEventsDataPoints() {
-		if (pickerEndDate.getValue() == null || pickerStartDate.getValue() == null) {
-			return;
-		}
-
-		listDataPoints.getItems().clear();
-
-		ZonedDateTime endDate = pickerEndDate.getValue().plusDays(1).atStartOfDay(ZoneId.systemDefault());
-		ZonedDateTime startDate = pickerStartDate.getValue().atStartOfDay(ZoneId.systemDefault());
-
-		listDataPoints.getItems().addAll(Mongo.INSTANCE.fetchDataPoints(startDate, endDate));
 	}
 
 	public void showEventInfo(KideAppEvent e) {
