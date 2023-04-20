@@ -1,6 +1,7 @@
 package view;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import controller.IAppControllerMToV;
@@ -13,4 +14,8 @@ public interface IGui {
 	void handleEventDetails(Optional<KideAppEventDetails> event);
 
 	IAppControllerMToV getController();
+
+	String getIntl(String key);
+
+	void changeLocale(Locale locale);
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane id="projectRoot" prefHeight="750.0" prefWidth="1000.0" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.base.BaseLayoutController">
    <top>
@@ -21,8 +22,10 @@
                 <Button mnemonicParsing="false" onMouseClicked="#handleShowStatisticsLayout" text="Statistics" />
                   <Button mnemonicParsing="false" onMouseClicked="#handleShowUpsertLayout" text="Find new" />
                   <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="My Events" />
+                    <Button mnemonicParsing="false" onMouseClicked="#handleShowSettingsLayout" text="Settings" />
               </buttons>
             </ButtonBar>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%hello" />
          </children>
       </HBox>
    </top>
