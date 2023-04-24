@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import view.Gui;
 import view.ILayoutController;
+import view.Intl;
 import view.layout.statistics.datastrategy.ByMedianPrice;
 import view.layout.statistics.datastrategy.CountsByDateActualFrom;
 import view.layout.statistics.datastrategy.CountsByDateCreated;
@@ -73,49 +74,49 @@ public class StatisticsLayoutController implements ILayoutController {
 	private List<KideChart> createCharts() {
 		List<KideChart> charts = new ArrayList<>();
 		KideChartEntryList dateCreatedByWeek = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsCreated"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsCreated"),
 				new CountsByDateCreated(DateUtil::toStartOfWeek));
 		KideChartEntryList dateActualFromByWeek = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsHappening"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsHappening"),
 				new CountsByDateActualFrom(DateUtil::toStartOfWeek));
 		KideChartEntryList dateSalesFromByWeek = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventSales"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventSales"),
 				new CountsByDateSalesFrom(DateUtil::toStartOfWeek));
 
-		KideChart datesByWeek = new KideChart(gui.getIntl("statistics.chart.title.datesByWeek"))
+		KideChart datesByWeek = new KideChart(Intl.INSTANCE.get("statistics.chart.title.datesByWeek"))
 				.addEntryList(dateCreatedByWeek).addEntryList(dateActualFromByWeek).addEntryList(dateSalesFromByWeek);
 
 		KideChartEntryList dateCreatedByMonth = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsCreated"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsCreated"),
 				new CountsByDateCreated(DateUtil::toStartOfMonth));
 		KideChartEntryList dateActualFromByMonth = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsHappening"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsHappening"),
 				new CountsByDateActualFrom(DateUtil::toStartOfMonth));
 		KideChartEntryList dateSalesFromByMonth = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventSales"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventSales"),
 				new CountsByDateSalesFrom(DateUtil::toStartOfMonth));
 
-		KideChart datesByMonth = new KideChart(gui.getIntl("statistics.chart.title.datesByMonth"))
+		KideChart datesByMonth = new KideChart(Intl.INSTANCE.get("statistics.chart.title.datesByMonth"))
 				.addEntryList(dateCreatedByMonth).addEntryList(dateActualFromByMonth)
 				.addEntryList(dateSalesFromByMonth);
 
 		KideChartEntryList dateCreatedByDay = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsCreated"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsCreated"),
 				new CountsByDateCreated(DateUtil::toStartOfDay));
 		KideChartEntryList dateActualFromByDay = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventsHappening"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventsHappening"),
 				new CountsByDateActualFrom(DateUtil::toStartOfDay));
 		KideChartEntryList dateSalesFromByDay = new KideChartEntryList(
-				gui.getIntl("statistics.chart.entryList.eventSales"),
+				Intl.INSTANCE.get("statistics.chart.entryList.eventSales"),
 				new CountsByDateSalesFrom(DateUtil::toStartOfDay));
 
-		KideChart datesByDay = new KideChart(gui.getIntl("statistics.chart.title.datesByDay"))
+		KideChart datesByDay = new KideChart(Intl.INSTANCE.get("statistics.chart.title.datesByDay"))
 				.addEntryList(dateCreatedByDay).addEntryList(dateActualFromByDay).addEntryList(dateSalesFromByDay);
 
-		KideChartEntryList medianPriceByWeek = new KideChartEntryList(gui.getIntl("statistics.chart.entryList.euros"),
-				new ByMedianPrice(DateUtil::toStartOfWeek));
+		KideChartEntryList medianPriceByWeek = new KideChartEntryList(
+				Intl.INSTANCE.get("statistics.chart.entryList.euros"), new ByMedianPrice(DateUtil::toStartOfWeek));
 
-		KideChart medianEventPrice = new KideChart(gui.getIntl("statistics.chart.title.medianEventPrice"))
+		KideChart medianEventPrice = new KideChart(Intl.INSTANCE.get("statistics.chart.title.medianEventPrice"))
 				.addEntryList(medianPriceByWeek);
 
 		charts.add(datesByWeek);

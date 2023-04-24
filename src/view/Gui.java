@@ -100,11 +100,6 @@ public class Gui extends Application implements IGui {
 		((NotificationLayoutController) notificationLayoutController).receiveEventDetails(event);
 	}
 
-	@Override
-	public String getIntl(String key) {
-		return Intl.INSTANCE.get(key);
-	}
-
 	private void initalizeViews() {
 		try {
 
@@ -160,7 +155,7 @@ public class Gui extends Application implements IGui {
 
 	@Override
 	public void changeLocale(Locale locale) {
-		Intl.INSTANCE.changeLocale(locale);
+		Intl.INSTANCE.setLocale(locale);
 		initalizeViews();
 		showSettingsLayout();
 	}

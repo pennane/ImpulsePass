@@ -105,21 +105,21 @@ public class NotificationLayoutController implements ILayoutController {
 		long daysUntilSaleEnd = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateSalesUntil());
 
 		if (latestEvent.getAvailability() == 0)
-			textSaleStart.setText(gui.getIntl("event.soldOut"));
+			textSaleStart.setText(Intl.INSTANCE.get("event.soldOut"));
 		else if (latestEvent.getSalesEnded())
-			textSaleStart.setText(gui.getIntl("event.salesEnded"));
+			textSaleStart.setText(Intl.INSTANCE.get("event.salesEnded"));
 		else if (latestEvent.getSalesStarted())
 			textSaleStart.setText(
-					gui.getIntl("event.salesStarted") + " " + daysUntilSaleEnd + " " + gui.getIntl("event.daysLeft"));
+					Intl.INSTANCE.get("event.salesStarted") + " " + daysUntilSaleEnd + " " + Intl.INSTANCE.get("event.daysLeft"));
 		else
-			textSaleStart.setText(daysUntilSaleStart + " " + gui.getIntl("event.daysUntilSaleStart"));
+			textSaleStart.setText(daysUntilSaleStart + " " + Intl.INSTANCE.get("event.daysUntilSaleStart"));
 
 		if (daysUntilStart == 0) {
-			textEventStart.setText(gui.getIntl("event.startsToday"));
+			textEventStart.setText(Intl.INSTANCE.get("event.startsToday"));
 		} else if (daysUntilStart < 0) {
-			textEventStart.setText(gui.getIntl("event.endedAlready"));
+			textEventStart.setText(Intl.INSTANCE.get("event.endedAlready"));
 		} else {
-			textEventStart.setText(daysUntilStart + " " + gui.getIntl("event.daysUntilEventStart"));
+			textEventStart.setText(daysUntilStart + " " + Intl.INSTANCE.get("event.daysUntilEventStart"));
 		}
 	}
 

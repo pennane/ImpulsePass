@@ -21,6 +21,7 @@ import model.database.mongo.Mongo;
 import model.kide.KideAppEvent;
 import view.Gui;
 import view.ILayoutController;
+import view.Intl;
 
 public class UpsertLayoutController implements ILayoutController {
 	Gui gui;
@@ -99,10 +100,10 @@ public class UpsertLayoutController implements ILayoutController {
 		infoLayoutBox.setVisible(true);
 		if (Mongo.INSTANCE.savedEventExists(e)) {
 			buttonSaveEvent.setDisable(true);
-			buttonSaveEvent.setText(gui.getIntl("findNew.addedToMyEvents"));
+			buttonSaveEvent.setText(Intl.INSTANCE.get("findNew.addedToMyEvents"));
 		} else {
 			buttonSaveEvent.setDisable(false);
-			buttonSaveEvent.setText(gui.getIntl("findNew.saveToMyEvents"));
+			buttonSaveEvent.setText(Intl.INSTANCE.get("findNew.saveToMyEvents"));
 		}
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
@@ -112,19 +113,19 @@ public class UpsertLayoutController implements ILayoutController {
 		textEventName.setText(e.getName());
 		textCompanyName.setText(e.getCompanyName());
 		if (e.getAvailability() == 0 || e.getSalesEnded())
-			textSaleStart.setText(gui.getIntl("event.soldOut"));
+			textSaleStart.setText(Intl.INSTANCE.get("event.soldOut"));
 		else if (e.getSalesStarted())
-			textSaleStart.setText(gui.getIntl("event.salesStarted"));
+			textSaleStart.setText(Intl.INSTANCE.get("event.salesStarted"));
 		else
-			textSaleStart.setText(saleTimeInDays + " " + gui.getIntl("daysUntilSaleStart"));
+			textSaleStart.setText(saleTimeInDays + " " + Intl.INSTANCE.get("daysUntilSaleStart"));
 
-		textEventStart.setText(startTimeInDays + " " + gui.getIntl("event.daysUntilEventStart"));
+		textEventStart.setText(startTimeInDays + " " + Intl.INSTANCE.get("event.daysUntilEventStart"));
 
 	}
 
 	public void saveEvent() {
 		buttonSaveEvent.setDisable(true);
-		buttonSaveEvent.setText(gui.getIntl("findNew.addedToMyEvents"));
+		buttonSaveEvent.setText(Intl.INSTANCE.get("findNew.addedToMyEvents"));
 		if (!Mongo.INSTANCE.savedEventExists(listEvents.getSelectionModel().getSelectedItem())) {
 			Mongo.INSTANCE.insertUserSavedEvent(listEvents.getSelectionModel().getSelectedItem());
 			gui.getNotificationLayoutController().insertEventToList(listEvents.getSelectionModel().getSelectedItem());

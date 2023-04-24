@@ -12,7 +12,7 @@ public enum Intl {
 		bundle = ResourceBundle.getBundle("bundles.LangBundle", Gui.EN_LOCALE);
 	}
 
-	public void changeLocale(Locale locale) {
+	public void setLocale(Locale locale) {
 		bundle = ResourceBundle.getBundle("bundles.LangBundle", locale);
 	}
 
