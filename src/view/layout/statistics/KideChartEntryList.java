@@ -80,7 +80,7 @@ public class KideChartEntryList implements IEntryCreator {
 	}
 
 	public static XYChart.Data<String, Integer> entryToChartData(Entry<ZonedDateTime, Integer> entry) {
-		return new XYChart.Data<>(entry.getKey().toString(), entry.getValue());
+		return new XYChart.Data<>(entry.getKey().toLocalDate().toString(), entry.getValue());
 	}
 
 }
