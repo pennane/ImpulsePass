@@ -6,13 +6,15 @@ import java.util.ResourceBundle;
 public enum Intl {
 	INSTANCE;
 
+	private Locale locale;
 	private ResourceBundle bundle;
 
 	private Intl() {
-		bundle = ResourceBundle.getBundle("bundles.LangBundle", Gui.EN_LOCALE);
+		setLocale(Gui.EN_LOCALE);
 	}
 
 	public void setLocale(Locale locale) {
+		this.locale = locale;
 		bundle = ResourceBundle.getBundle("bundles.LangBundle", locale);
 	}
 
@@ -22,5 +24,9 @@ public enum Intl {
 
 	public ResourceBundle getBundle() {
 		return bundle;
+	}
+
+	public Locale getLocale() {
+		return locale;
 	}
 }
