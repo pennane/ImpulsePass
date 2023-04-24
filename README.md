@@ -1,4 +1,4 @@
-# Kideappdataanalyysivehje
+# ImpulsePass
 
 > Ohjelmistotuotantoprojekti 1 TX00CF81-3018
 >
@@ -8,7 +8,7 @@
 
 ## Visio
 
-Kideappdataanalyysivehje on maven java työpöytäsovellus, jolla voidaan tarkastella [kide.app](https://kide.app/) tapahtumien muutoksia korkealta tasolta ajan funktiona.
+ImpulsePass on maven java työpöytäsovellus, jolla voidaan tarkastella muunmuassa [kide.app](https://kide.app/) tapahtumien muutoksia korkealta tasolta ajan funktiona.
 
 Sovelluksella pystyy pitämään kirjaa käyttäjää kiinnostavista tapahtumista tallentamalla niitä omaan listaan sekä saamalla niiden tapahtuma- sekä myyntipäivämäärinä ilmoituksia.
 
