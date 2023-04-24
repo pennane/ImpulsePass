@@ -6,13 +6,37 @@
 }
 
 #projectRoot, .projectRoot {
-	-fx-background-color: #5e35b1;
+	-fx-background-color: #010218;
 	 -fx-text-fill: #ffffff;
 }
 
+.bg2, .chart-plot-background, .list-view, .list-view .list-cell:even  {
+	-fx-background-color:#0d0d0d;
+	-fx-text-fill:#b7bcc3;
+}
+.bg3,.list-view .list-cell:odd {
+	-fx-background-color:#141414;
+	-fx-text-fill:#b7bcc3;
+}
+
+.chart-vertical-grid-lines,.chart-horizontal-grid-lines {
+	-fx-stroke:#141414;
+}
+
+.chart-legend {
+   -fx-background-color: transparent;
+   	-fx-border-width: 1px;
+	-fx-border-radius: 6px;
+	-fx-border-color: #ffffff;
+}
+
+.chart-legend-item{
+   -fx-text-fill:#ffffff;
+}
+
 .eventInformation {
-	-fx-background-color: #ffffff;
-	 -fx-text-fill: #000000;
+	-fx-background-color: #303041;
+	 -fx-text-fill: #ffffff;
 	 -fx-spacing: 10;
 }
 

@@ -11,15 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
+<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css"
+   xmlns="http://javafx.com/javafx/19"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
    <children>
       <HBox alignment="BASELINE_LEFT" layoutX="34.0" layoutY="22.0" prefHeight="37.0" prefWidth="440.0" spacing="3.0">
          <children>
-            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="%findNew.filter.available" />
-            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="%findNew.filter.upcoming" />
-            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="%findNew.filter.salesOngoing" />
-            <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="%findNew.filter.salesEnded" />
-            <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0">
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" styleClass="button" text="%findNew.filter.available" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" styleClass="button" text="%findNew.filter.upcoming" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" styleClass="button" text="%findNew.filter.salesOngoing" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" styleClass="button" text="%findNew.filter.salesEnded" />
+            <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0" style="-fx-background-color: #888888;">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
