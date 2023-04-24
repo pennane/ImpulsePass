@@ -99,10 +99,10 @@ public class UpsertLayoutController implements ILayoutController {
 		infoLayoutBox.setVisible(true);
 		if (Mongo.INSTANCE.savedEventExists(e)) {
 			buttonSaveEvent.setDisable(true);
-			buttonSaveEvent.setText("Added to my events");
+			buttonSaveEvent.setText(gui.getIntl("findNew.addedToMyEvents"));
 		} else {
 			buttonSaveEvent.setDisable(false);
-			buttonSaveEvent.setText("Save to my events");
+			buttonSaveEvent.setText(gui.getIntl("findNew.saveToMyEvents"));
 		}
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
@@ -112,19 +112,19 @@ public class UpsertLayoutController implements ILayoutController {
 		textEventName.setText(e.getName());
 		textCompanyName.setText(e.getCompanyName());
 		if (e.getAvailability() == 0 || e.getSalesEnded())
-			textSaleStart.setText("Sold out!");
+			textSaleStart.setText(gui.getIntl("event.soldOut"));
 		else if (e.getSalesStarted())
-			textSaleStart.setText("Ticket sale started!");
+			textSaleStart.setText(gui.getIntl("event.salesStarted"));
 		else
-			textSaleStart.setText(saleTimeInDays + " days until ticket sale");
+			textSaleStart.setText(saleTimeInDays + " " + gui.getIntl("daysUntilSaleStart"));
 
-		textEventStart.setText(startTimeInDays + " days until start of event");
+		textEventStart.setText(startTimeInDays + " " + gui.getIntl("event.daysUntilEventStart"));
 
 	}
 
 	public void saveEvent() {
 		buttonSaveEvent.setDisable(true);
-		buttonSaveEvent.setText("Added to my events");
+		buttonSaveEvent.setText(gui.getIntl("findNew.addedToMyEvents"));
 		if (!Mongo.INSTANCE.savedEventExists(listEvents.getSelectionModel().getSelectedItem())) {
 			Mongo.INSTANCE.insertUserSavedEvent(listEvents.getSelectionModel().getSelectedItem());
 			gui.getNotificationLayoutController().insertEventToList(listEvents.getSelectionModel().getSelectedItem());

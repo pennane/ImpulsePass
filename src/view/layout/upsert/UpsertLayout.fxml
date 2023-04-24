@@ -11,18 +11,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
-	<children>
+<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css"
+   xmlns="http://javafx.com/javafx/18"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
+   <children>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="BASELINE_LEFT" spacing="3.0">
                      <children>
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="available" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="upcoming" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="sales ongoing" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="sales ended" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="%findNew.filter.available" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="%findNew.filter.upcoming" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="%findNew.filter.salesOngoing" />
+                        <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="%findNew.filter.salesEnded" />
                         <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0">
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -42,7 +44,8 @@
                   <ImageView fx:id="imgViewLogo" fitHeight="210.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin></ImageView>
+                     </VBox.margin>
+                  </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="410.0">
                      <children>
                         <Text fx:id="textEventName" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" text="EventName" textAlignment="CENTER" wrappingWidth="400.0" />
@@ -56,7 +59,7 @@
                      <children>
                         <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilTicketSales" textAlignment="CENTER" wrappingWidth="400.0" />
                         <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="TimeUntilEventStart" textAlignment="CENTER" wrappingWidth="400.0" />
-                        <Button fx:id="buttonSaveEvent" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveEvent" prefHeight="25.0" prefWidth="135.0" text="Save to my events" textAlignment="CENTER" />
+                        <Button fx:id="buttonSaveEvent" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveEvent" prefHeight="25.0" prefWidth="135.0" text="%findNew.saveToMyEvents" textAlignment="CENTER" />
                      </children>
                   </VBox>
                </children>
@@ -66,7 +69,7 @@
             </VBox>
          </children>
       </HBox>
-	</children>
+   </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>

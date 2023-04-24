@@ -105,20 +105,21 @@ public class NotificationLayoutController implements ILayoutController {
 		long daysUntilSaleEnd = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateSalesUntil());
 
 		if (latestEvent.getAvailability() == 0)
-			textSaleStart.setText("Sold out!");
+			textSaleStart.setText(gui.getIntl("event.soldOut"));
 		else if (latestEvent.getSalesEnded())
-			textSaleStart.setText("Sales ended!");
+			textSaleStart.setText(gui.getIntl("event.salesEnded"));
 		else if (latestEvent.getSalesStarted())
-			textSaleStart.setText("Ticket sale started! " + daysUntilSaleEnd + " days left!");
+			textSaleStart.setText(
+					gui.getIntl("event.salesStarted") + " " + daysUntilSaleEnd + " " + gui.getIntl("event.daysLeft"));
 		else
-			textSaleStart.setText(daysUntilSaleStart + " days until ticket sale");
+			textSaleStart.setText(daysUntilSaleStart + " " + gui.getIntl("event.daysUntilSaleStart"));
 
 		if (daysUntilStart == 0) {
-			textEventStart.setText("Event starts today!");
+			textEventStart.setText(gui.getIntl("event.startsToday"));
 		} else if (daysUntilStart < 0) {
-			textEventStart.setText("Event ended already!");
+			textEventStart.setText(gui.getIntl("event.endedAlready"));
 		} else {
-			textEventStart.setText(daysUntilStart + " days until start of event");
+			textEventStart.setText(daysUntilStart + " " + gui.getIntl("event.daysUntilEventStart"));
 		}
 	}
 

@@ -53,7 +53,7 @@ public class Gui extends Application implements IGui {
 
 		controller = new AppController(this);
 		this.primaryStage = primaryStage;
-		bundle = ResourceBundle.getBundle("bundles.LangBundle", FI_LOCALE);
+		bundle = ResourceBundle.getBundle("bundles.LangBundle", EN_LOCALE);
 		initalizeViews();
 
 		showStatisticsLayout();
@@ -156,7 +156,6 @@ public class Gui extends Application implements IGui {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

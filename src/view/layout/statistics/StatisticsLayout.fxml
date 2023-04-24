@@ -12,7 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
+<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css"
+   xmlns="http://javafx.com/javafx/18"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <center>
@@ -28,17 +30,18 @@
          <left>
             <VBox onMouseClicked="#refreshChart" spacing="10.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Choose chart" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="%statistics.chooseChart" />
                   <ListView fx:id="listViewCharts" prefHeight="200.0" prefWidth="200.0" style="-fx-fill: #ffffff;" />
                   <HBox fx:id="buttonRefreshChartbuttonRefreshChart" alignment="CENTER" style="-fx-fill: #ffffff;">
                      <children>
-                        <Button fx:id="buttonRefreshChart" mnemonicParsing="false" style="-fx-padding: 4px;" text="Refresh chart">
+                        <Button fx:id="buttonRefreshChart" mnemonicParsing="false" style="-fx-padding: 4px;" text="%statistics.refreshChart">
                            <padding>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </padding>
                            <HBox.margin>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                           </HBox.margin></Button>
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                </children>
