@@ -23,6 +23,7 @@ import model.kide.KideAppEvent;
 import model.kide.KideAppEventDetails;
 import view.Gui;
 import view.ILayoutController;
+import view.Intl;
 
 public class NotificationLayoutController implements ILayoutController {
 	Gui gui;
@@ -109,8 +110,8 @@ public class NotificationLayoutController implements ILayoutController {
 		else if (latestEvent.getSalesEnded())
 			textSaleStart.setText(Intl.INSTANCE.get("event.salesEnded"));
 		else if (latestEvent.getSalesStarted())
-			textSaleStart.setText(
-					Intl.INSTANCE.get("event.salesStarted") + " " + daysUntilSaleEnd + " " + Intl.INSTANCE.get("event.daysLeft"));
+			textSaleStart.setText(Intl.INSTANCE.get("event.salesStarted") + " " + daysUntilSaleEnd + " "
+					+ Intl.INSTANCE.get("event.daysLeft"));
 		else
 			textSaleStart.setText(daysUntilSaleStart + " " + Intl.INSTANCE.get("event.daysUntilSaleStart"));
 
