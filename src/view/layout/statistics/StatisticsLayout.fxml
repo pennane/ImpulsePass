@@ -12,13 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css"
-   xmlns="http://javafx.com/javafx/18"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.statistics.StatisticsLayoutController">
    <children>
-      <BorderPane prefHeight="600.0" prefWidth="800.0">
+      <BorderPane prefHeight="672.0" prefWidth="989.0">
          <center>
-            <LineChart fx:id="lineChart" title="obunga" BorderPane.alignment="CENTER">
+            <LineChart fx:id="lineChart" prefHeight="672.0" prefWidth="1114.0" title="obunga" BorderPane.alignment="CENTER">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
