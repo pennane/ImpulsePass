@@ -55,7 +55,6 @@ public class ByMedianPrice implements IEntryCreator {
 					continue;
 				}
 				var avg = (Integer.parseInt(minPriceEur) + Integer.parseInt(maxPriceEur)) / 200;
-				System.out.println(event.getId() + "  " + avg + " €");
 
 				averages.add(avg);
 			}
@@ -63,7 +62,6 @@ public class ByMedianPrice implements IEntryCreator {
 			Collections.sort(averages);
 
 			int median = averages.size() == 0 ? 0 : averages.get((int) (Math.floor(averages.size() / 2)));
-			System.out.println(median);
 			return Map.entry(entry.getKey(), median);
 		}).collect(Collectors.toList());
 	}

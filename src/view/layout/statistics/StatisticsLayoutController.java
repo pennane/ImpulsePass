@@ -33,7 +33,6 @@ public class StatisticsLayoutController implements ILayoutController {
 	@Override
 	public ILayoutController initialize(Gui gui) {
 		this.gui = gui;
-		System.out.println();
 		List<KideChart> charts = createCharts();
 
 		lineChart.setCreateSymbols(false);
