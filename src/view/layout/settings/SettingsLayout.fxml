@@ -14,14 +14,14 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Settings">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="%settings.title">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="Choose language:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="white-text" text="%settings.chooseLanguage">
                            <VBox.margin>
                               <Insets bottom="8.0" />
                            </VBox.margin>
