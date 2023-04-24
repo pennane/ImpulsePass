@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import controller.AppController;
 import controller.IAppControllerMToV;
@@ -22,8 +21,11 @@ import view.layout.notification.NotificationLayoutController;
 import view.layout.upsert.UpsertLayoutController;
 
 public class Gui extends Application implements IGui {
+	public static final Locale FI_LOCALE = new Locale("fi", "FI");
+	public static final Locale EN_LOCALE = new Locale("en", "EN");
+	public static final Locale FR_LOCALE = new Locale("fr", "FR");
+
 	Stage primaryStage;
-	ResourceBundle bundle;
 
 	IAppControllerMToV controller;
 
@@ -44,16 +46,12 @@ public class Gui extends Application implements IGui {
 	AnchorPane settingsLayout;
 	ILayoutController settingsLayoutController;
 
-	public static final Locale FI_LOCALE = new Locale("fi", "FI");
-	public static final Locale EN_LOCALE = new Locale("en", "EN");
-	public static final Locale FR_LOCALE = new Locale("fr", "FR");
-
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 
 		controller = new AppController(this);
 		this.primaryStage = primaryStage;
-		bundle = ResourceBundle.getBundle("bundles.LangBundle", EN_LOCALE);
+
 		initalizeViews();
 
 		showStatisticsLayout();
@@ -104,7 +102,7 @@ public class Gui extends Application implements IGui {
 
 	@Override
 	public String getIntl(String key) {
-		return bundle.getString(key);
+		return Intl.INSTANCE.get(key);
 	}
 
 	private void initalizeViews() {
@@ -114,7 +112,7 @@ public class Gui extends Application implements IGui {
 
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("layout/base/BaseLayout.fxml"));
-			loader.setResources(bundle);
+			loader.setResources(Intl.INSTANCE.getBundle());
 
 			layoutBase = (BorderPane) loader.load();
 
@@ -125,28 +123,28 @@ public class Gui extends Application implements IGui {
 
 			loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("layout/statistics/StatisticsLayout.fxml"));
-			loader.setResources(bundle);
+			loader.setResources(Intl.INSTANCE.getBundle());
 			statisticsLayout = (AnchorPane) loader.load();
 			statisticsLayoutController = loader.getController();
 			statisticsLayoutController.initialize(this);
 
 			loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("layout/upsert/UpsertLayout.fxml"));
-			loader.setResources(bundle);
+			loader.setResources(Intl.INSTANCE.getBundle());
 			upsertLayout = (AnchorPane) loader.load();
 			upsertLayoutController = loader.getController();
 			upsertLayoutController.initialize(this);
 
 			loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("layout/notification/NotificationLayout.fxml"));
-			loader.setResources(bundle);
+			loader.setResources(Intl.INSTANCE.getBundle());
 			notificationLayout = (AnchorPane) loader.load();
 			notificationLayoutController = loader.getController();
 			notificationLayoutController.initialize(this);
 
 			loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("layout/settings/SettingsLayout.fxml"));
-			loader.setResources(bundle);
+			loader.setResources(Intl.INSTANCE.getBundle());
 			settingsLayout = (AnchorPane) loader.load();
 			settingsLayoutController = loader.getController();
 			settingsLayoutController.initialize(this);
@@ -162,7 +160,7 @@ public class Gui extends Application implements IGui {
 
 	@Override
 	public void changeLocale(Locale locale) {
-		bundle = ResourceBundle.getBundle("bundles.LangBundle", locale);
+		Intl.INSTANCE.changeLocale(locale);
 		initalizeViews();
 		showSettingsLayout();
 	}
