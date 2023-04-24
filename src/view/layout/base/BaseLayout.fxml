@@ -19,13 +19,12 @@
             </ImageView>
             <ButtonBar buttonMinWidth="80.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" onMouseClicked="#handleShowStatisticsLayout" text="Statistics" />
-                  <Button mnemonicParsing="false" onMouseClicked="#handleShowUpsertLayout" text="Find new" />
-                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="My Events" />
-                    <Button mnemonicParsing="false" onMouseClicked="#handleShowSettingsLayout" text="Settings" />
+                <Button mnemonicParsing="false" onMouseClicked="#handleShowStatisticsLayout" text="%navigation.link.statistics" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleShowUpsertLayout" text="%navigation.link.findNew" />
+                  <Button mnemonicParsing="false" onMouseClicked="#handleShowNotifationLayout" text="%navigation.link.myEvents" />
+                    <Button mnemonicParsing="false" onMouseClicked="#handleShowSettingsLayout" text="%navigation.link.settings" />
               </buttons>
             </ButtonBar>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%hello" />
          </children>
       </HBox>
    </top>

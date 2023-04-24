@@ -23,6 +23,7 @@ import model.kide.KideAppEvent;
 import model.kide.KideAppEventDetails;
 import view.Gui;
 import view.ILayoutController;
+import view.Intl;
 
 public class NotificationLayoutController implements ILayoutController {
 	Gui gui;
@@ -105,20 +106,21 @@ public class NotificationLayoutController implements ILayoutController {
 		long daysUntilSaleEnd = ChronoUnit.DAYS.between(nowDate, latestEvent.getDateSalesUntil());
 
 		if (latestEvent.getAvailability() == 0)
-			textSaleStart.setText("Sold out!");
+			textSaleStart.setText(Intl.INSTANCE.get("event.soldOut"));
 		else if (latestEvent.getSalesEnded())
-			textSaleStart.setText("Sales ended!");
+			textSaleStart.setText(Intl.INSTANCE.get("event.salesEnded"));
 		else if (latestEvent.getSalesStarted())
-			textSaleStart.setText("Ticket sale started! " + daysUntilSaleEnd + " days left!");
+			textSaleStart.setText(Intl.INSTANCE.get("event.salesStarted") + " " + daysUntilSaleEnd + " "
+					+ Intl.INSTANCE.get("event.daysLeft"));
 		else
-			textSaleStart.setText(daysUntilSaleStart + " days until ticket sale");
+			textSaleStart.setText(daysUntilSaleStart + " " + Intl.INSTANCE.get("event.daysUntilSaleStart"));
 
 		if (daysUntilStart == 0) {
-			textEventStart.setText("Event starts today!");
+			textEventStart.setText(Intl.INSTANCE.get("event.startsToday"));
 		} else if (daysUntilStart < 0) {
-			textEventStart.setText("Event ended already!");
+			textEventStart.setText(Intl.INSTANCE.get("event.endedAlready"));
 		} else {
-			textEventStart.setText(daysUntilStart + " days until start of event");
+			textEventStart.setText(daysUntilStart + " " + Intl.INSTANCE.get("event.daysUntilEventStart"));
 		}
 	}
 

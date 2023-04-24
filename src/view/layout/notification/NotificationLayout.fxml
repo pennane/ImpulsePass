@@ -10,14 +10,16 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.notification.NotificationLayoutController">
+<AnchorPane styleClass="projectRoot" stylesheets="@../../application.css"
+   xmlns="http://javafx.com/javafx/18"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.notification.NotificationLayoutController">
    <children>
       <VBox spacing="20.0">
          <children>
             <AnchorPane>
                <children>
-                  <Text layoutX="85.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" styleClass="white-text" text="My Events" textAlignment="CENTER" wrappingWidth="631.7802734375" />
-                  <Button fx:id="btnRefresh" layoutX="691.0" layoutY="15.0" mnemonicParsing="false" onAction="#showEventsList" text="Refresh" textAlignment="CENTER" />
+                  <Text layoutX="85.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30;" styleClass="white-text" text="%myEvents.title" textAlignment="CENTER" wrappingWidth="631.7802734375" />
+                  <Button fx:id="btnRefresh" layoutX="691.0" layoutY="15.0" mnemonicParsing="false" onAction="#showEventsList" text="%myEvents.refresh" textAlignment="CENTER" />
                </children>
             </AnchorPane>
             <HBox alignment="TOP_CENTER" fillHeight="false" VBox.vgrow="ALWAYS">
@@ -51,7 +53,7 @@
                            <children>
                               <Text fx:id="textSaleStart" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="white-text" text="TimeUntilTicketSales" />
                               <Text fx:id="textEventStart" layoutX="10.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" styleClass="white-text" text="TimeUntilEventStart" />
-                              <Button fx:id="btnOpenEvent" mnemonicParsing="false" prefHeight="27.0" prefWidth="136.0" text="Open event page" />
+                              <Button fx:id="btnOpenEvent" mnemonicParsing="false" prefHeight="27.0" prefWidth="136.0" text="%myEvents.openEventPage" />
                            </children>
                         </VBox>
                      </children>

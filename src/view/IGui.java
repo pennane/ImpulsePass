@@ -15,7 +15,5 @@ public interface IGui {
 
 	IAppControllerMToV getController();
 
-	String getIntl(String key);
-
 	void changeLocale(Locale locale);
 }
