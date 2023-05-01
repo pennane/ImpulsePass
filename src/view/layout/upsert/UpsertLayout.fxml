@@ -11,35 +11,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css"
-   xmlns="http://javafx.com/javafx/18"
-   xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
+<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
    <children>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="BASELINE_LEFT" layoutX="34.0" layoutY="22.0" prefHeight="37.0" prefWidth="440.0" spacing="3.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="%findNew.filter.available" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="%findNew.filter.upcoming" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="%findNew.filter.salesOngoing" />
+            <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="%findNew.filter.salesEnded" />
+            <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../res/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutX="34.0" layoutY="70.0" prefHeight="462.0" prefWidth="820.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <VBox prefHeight="442.0" prefWidth="308.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox alignment="BASELINE_LEFT" spacing="3.0">
-                     <children>
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleAvailableFilter" text="%findNew.filter.available" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="%findNew.filter.upcoming" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="%findNew.filter.salesOngoing" />
-                        <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="%findNew.filter.salesEnded" />
-                        <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0">
-                           <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../res/refresh.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <ListView fx:id="listEvents" prefHeight="499.0" prefWidth="349.0" />
+                  <ListView fx:id="listEvents" prefHeight="495.0" prefWidth="641.0" />
                </children>
             </VBox>
-            <VBox fx:id="infoLayoutBox" alignment="TOP_CENTER" prefWidth="300.0" styleClass="eventInformation" visible="false" HBox.hgrow="NEVER">
+            <VBox fx:id="infoLayoutBox" alignment="TOP_CENTER" prefHeight="442.0" prefWidth="400.0" styleClass="eventInformation" visible="false" HBox.hgrow="NEVER">
                <children>
                   <ImageView fx:id="imgViewLogo" fitHeight="210.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>

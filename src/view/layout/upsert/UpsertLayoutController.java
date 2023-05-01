@@ -101,9 +101,11 @@ public class UpsertLayoutController implements ILayoutController {
 		if (Mongo.INSTANCE.savedEventExists(e)) {
 			buttonSaveEvent.setDisable(true);
 			buttonSaveEvent.setText(Intl.INSTANCE.get("findNew.addedToMyEvents"));
+
 		} else {
 			buttonSaveEvent.setDisable(false);
 			buttonSaveEvent.setText(Intl.INSTANCE.get("findNew.saveToMyEvents"));
+
 		}
 		Image logo = new Image(Config.get("IMG_URL_PREFIX",
 				"https://portalvhdsp62n0yt356llm.blob.core.windows.net/bailataan-mediaitems/") + e.getMediaFilename());
