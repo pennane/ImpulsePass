@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
+<AnchorPane prefHeight="582.0" prefWidth="849.0" styleClass="projectRoot" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.layout.upsert.UpsertLayoutController">
    <children>
       <HBox alignment="BASELINE_LEFT" layoutX="34.0" layoutY="22.0" prefHeight="37.0" prefWidth="440.0" spacing="3.0">
          <children>
@@ -19,7 +19,7 @@
             <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleUpcomingFilter" text="%findNew.filter.upcoming" />
             <ToggleButton mnemonicParsing="false" onMouseClicked="#toggleSalesOngoingFilter" text="%findNew.filter.salesOngoing" />
             <ToggleButton mnemonicParsing="false" onMouseClicked="#togglSalesEndedFilter" text="%findNew.filter.salesEnded" />
-            <Button fx:id="buttonFetchEvents" mnemonicParsing="false" prefHeight="11.0" prefWidth="0.0">
+            <Button fx:id="buttonFetchEvents" mnemonicParsing="false" onAction="#handleFetchEvents" prefHeight="11.0" prefWidth="0.0">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
