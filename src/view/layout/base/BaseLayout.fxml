@@ -30,11 +30,14 @@
             </ButtonBar>
          </children>
          <BorderPane.margin>
-            <Insets left="8.0" right="8.0" top="8.0" />
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
          </BorderPane.margin>
       </HBox>
    </top>
    <center>
-      <HBox fx:id="viewContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox fx:id="viewContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" />
+         </BorderPane.margin></HBox>
    </center>
 </BorderPane>
