@@ -1,0 +1,17 @@
+config
+controller
+model
+model.database.mongo
+model.database.sql
+model.gson
+model.kide
+model.schedule
+view
+view.layout.base
+view.layout.login
+view.layout.notification
+view.layout.register
+view.layout.settings
+view.layout.statistics
+view.layout.statistics.datastrategy
+view.layout.upsert
