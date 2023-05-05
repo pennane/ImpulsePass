@@ -12,20 +12,26 @@ ImpulsePass on maven java työpöytäsovellus, jolla voidaan tarkastella muunmua
 
 Sovelluksella pystyy pitämään kirjaa käyttäjää kiinnostavista tapahtumista tallentamalla niitä omaan listaan sekä saamalla niiden tapahtuma- sekä myyntipäivämäärinä ilmoituksia.
 
+Sovelluksen ideana on mahdollistaa tapahtumientarjoajien helpottaminen ja tarjota huomiolta puuttellisia tapahtumia käyttäjille alennettuun hintaan. Tämä mahdollistetaan sillä, että kyseisiä tapahtumia ei ole vielä myyty loppuun, mutta että tapahtumajankohta on jo lähellä.
+
 <p>
-<img src="docs/images/1.png" height="500">
+<img src="docs/images/5.png" height="500">
 <em>Datanäkymä</em>
 </p>
 <p>
-<img src="docs/images/2.png" height="500">
+<img src="docs/images/6.png" height="500">
 <em>Tapahtumahakunäykmä</em></p>
 <p>
-<img src="docs/images/3.png" height="500">
+<img src="docs/images/7.png" height="500">
 <em>Omat tapahtumat -näkymä</em>
 </p>
 <p>
 <img src="docs/images/4.png">
 <em>Omista tapahtumista skeduloidaan taski</em>
+</p>
+<p>
+<img src="docs/images/8.png">
+<em>Sovellus on lokalisoitu toistaiseksi kolmelle eri kielelle</em>
 </p>
 
 ### Kirjastot
