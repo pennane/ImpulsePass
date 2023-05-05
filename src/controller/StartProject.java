@@ -3,7 +3,7 @@ package controller;
 import view.Gui;
 
 /**
- * The main class of the project
+ * Luokka, josta projekti käynnistetään
  */
 public class StartProject {
 	public static void main(final String[] args) {

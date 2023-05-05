@@ -1,5 +1,8 @@
 package model.database.mongo;
 
+/**
+ * Adapteri KideApp tapahtuman tallentamiseen tietokantaan
+ */
 public class ProductAdapter<T> {
 	T product;
 

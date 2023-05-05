@@ -2,6 +2,9 @@ package model.schedule;
 
 import java.time.ZonedDateTime;
 
+/**
+ * Käsky skeduloijalle
+ */
 public class Task {
 	private String description;
 	private Runnable task;

@@ -5,6 +5,10 @@ import java.util.List;
 
 import model.kide.KideAppEvent;
 
+/**
+ * Usean tapahtuman collection luokka
+ *
+ */
 public class EventsDataPoint {
 	List<KideAppEvent> events;
 	Date date;
@@ -32,7 +36,7 @@ public class EventsDataPoint {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 	@Override
 	public String toString() {
 		return date.toLocaleString();

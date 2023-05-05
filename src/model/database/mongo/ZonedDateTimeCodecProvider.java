@@ -6,6 +6,9 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 
+/**
+ * Provider kodekille joka mahdollistaa ZonedDateTimen tallentamiseen Mongoon
+ */
 public class ZonedDateTimeCodecProvider implements CodecProvider {
 	@Override
 	@SuppressWarnings("unchecked")

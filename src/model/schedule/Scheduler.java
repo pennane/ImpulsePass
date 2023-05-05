@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Custom skeduloija Skeduloi abstrakteja käskyjä tulevaisuuteen
+ */
 public enum Scheduler {
 	INSTANCE;
 

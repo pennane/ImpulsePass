@@ -10,6 +10,9 @@ import model.kide.KideAppEvent;
 import model.kide.KideAppEventDetails;
 import view.IGui;
 
+/**
+ * Sovelluksen kontrolleri. MVC arkkitehtuurin sydän.
+ */
 public class AppController implements IAppControllerMToV, IAppControllerVToM {
 	IMotor motor;
 	IGui gui;

@@ -2,6 +2,12 @@ package model.kide;
 
 import java.util.List;
 
+/**
+ * Vanha testiluokka
+ * 
+ * @Deprecated
+ *
+ */
 public class TestApiConn {
 	public static void main(String[] args) {
 		KideAppApi api = new KideAppApi();

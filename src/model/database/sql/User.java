@@ -1,5 +1,8 @@
 package model.database.sql;
 
+/**
+ * Autentikoinnin käyttäjämalli
+ */
 public class User {
 	private String username;
 	private String password;
