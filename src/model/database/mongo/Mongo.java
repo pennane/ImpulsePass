@@ -30,6 +30,9 @@ import com.mongodb.client.model.Filters;
 import config.Config;
 import model.kide.KideAppEvent;
 
+/**
+ * Mongo keskustelija
+ */
 public enum Mongo {
 	INSTANCE;
 

@@ -2,6 +2,9 @@ package model.kide;
 
 import java.util.List;
 
+/**
+ * KideApp palveluntarjoajan perus malli vastaukselle
+ */
 public class KideAppApiResponse<T> {
 	private T model;
 	private List<String> links;

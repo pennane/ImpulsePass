@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import config.Config;
 
+/**
+ * Autentikointiin käytettävä SQL tietokanta
+ */
 public class LoginDatabase {
 
 	public LoginDatabase() {

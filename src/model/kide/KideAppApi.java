@@ -14,6 +14,9 @@ import com.google.gson.reflect.TypeToken;
 import model.CustomGson;
 import model.database.mongo.ProductAdapter;
 
+/**
+ * KideApp palveluntarjoajan rajapinnan hallitsija
+ */
 public class KideAppApi {
 	public static final String API_BASE = "https://api.kide.app/api/";
 	public static final String DEFAULT_EVENT_PARAMS = "city=P%C3%A4%C3%A4kaupunkiseutu&productType=1";

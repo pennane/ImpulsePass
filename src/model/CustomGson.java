@@ -9,6 +9,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+/**
+ * Kustomoitu GSON parseri Tukee ZonedDateTimen parsimista JSON muodosta Javaan
+ * ja takaisin.
+ */
 public enum CustomGson {
 	INSTANCE;
 

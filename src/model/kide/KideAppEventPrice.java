@@ -1,5 +1,8 @@
 package model.kide;
 
+/**
+ * KideApp palveluntarjoajan tapahtuman hinnalle POJO
+ */
 public class KideAppEventPrice {
 	private String eur;
 

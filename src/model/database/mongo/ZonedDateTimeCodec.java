@@ -12,6 +12,9 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.DecoderContext;
 import org.bson.codecs.EncoderContext;
 
+/**
+ * Codec ZonedDateTimen tallentamiseen Mongoon
+ */
 public class ZonedDateTimeCodec implements Codec<ZonedDateTime> {
 
 	@Override
@@ -31,7 +34,6 @@ public class ZonedDateTimeCodec implements Codec<ZonedDateTime> {
 		}
 
 		reader.readStartDocument();
-
 
 		long date = reader.readDateTime("date");
 		String zoneId = reader.readString("zoneId");

@@ -12,6 +12,9 @@ import model.kide.KideAppEventDetails;
 import model.schedule.Scheduler;
 import model.schedule.TaskConvertter;
 
+/**
+ * Sovelluksen piilotettu sydän. MVC mallin Modelin pää
+ */
 public class Motor extends Thread implements IMotor {
 	IAppControllerVToM controller;
 	KideAppApi api;
@@ -19,26 +22,20 @@ public class Motor extends Thread implements IMotor {
 	public Motor(IAppControllerVToM controller) {
 		this.controller = controller;
 		api = new KideAppApi();
-		
+
 		scheduleInitialTasks();
 	}
-	
+
 	private void scheduleInitialTasks() {
 		ZonedDateTime now = ZonedDateTime.now();
 
 		var userSavedEvents = Mongo.INSTANCE.fetchUserSavedEvents();
 
-		userSavedEvents
-			.stream()
-			.filter(e -> e.getDateSalesFrom().compareTo(now) > 0)
-			.map(TaskConvertter::toSalesStartingTask)
-			.forEach(Scheduler.INSTANCE::schedule);
+		userSavedEvents.stream().filter(e -> e.getDateSalesFrom().compareTo(now) > 0)
+				.map(TaskConvertter::toSalesStartingTask).forEach(Scheduler.INSTANCE::schedule);
 
-		userSavedEvents
-			.stream()
-			.filter(e -> e.getDateActualFrom().compareTo(now) > 0)
-			.map(TaskConvertter::toEventStartingTask)
-			.forEach(Scheduler.INSTANCE::schedule);
+		userSavedEvents.stream().filter(e -> e.getDateActualFrom().compareTo(now) > 0)
+				.map(TaskConvertter::toEventStartingTask).forEach(Scheduler.INSTANCE::schedule);
 	}
 
 	@Override

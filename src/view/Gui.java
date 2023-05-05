@@ -20,6 +20,9 @@ import view.layout.base.BaseLayoutController;
 import view.layout.notification.NotificationLayoutController;
 import view.layout.upsert.UpsertLayoutController;
 
+/**
+ * Käyttöliittymä
+ */
 public class Gui extends Application implements IGui {
 	public static final Locale FI_LOCALE = new Locale("fi", "FI");
 	public static final Locale EN_LOCALE = new Locale("en", "EN");

@@ -11,6 +11,10 @@ import javafx.scene.layout.Priority;
 import model.database.mongo.Mongo;
 import model.kide.KideAppEvent;
 
+/**
+ * Tapahtumadatapiste View luokalle
+ *
+ */
 public class EventListCell extends ListCell<KideAppEvent> {
 	HBox hbox = new HBox();
 	Label label = new Label("");

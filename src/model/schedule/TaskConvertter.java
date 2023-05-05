@@ -2,6 +2,9 @@ package model.schedule;
 
 import model.kide.KideAppEvent;
 
+/**
+ * Metodeja asioiden muuntamiseen käskyiksi
+ */
 public class TaskConvertter {
 	public static Task toSalesStartingTask(KideAppEvent e) {
 		return new Task("sales start: " + e.getName(), () -> System.out.println(e.getName() + " myynti alkaa pian :D"),
